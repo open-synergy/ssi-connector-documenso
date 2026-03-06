@@ -18,7 +18,7 @@
     ],
     "external_dependencies": {
         "python": [
-            "PyMuPDF",
+            "fitz",
         ]
     },
     "data": [
