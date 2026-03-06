@@ -55,8 +55,8 @@ jobs:
           persist-credentials: false
       - name: Install PyMuPDF
         run: |
-          /opt/odoo-venv/bin/pip install --upgrade "pip>=21,<22" wheel
-          /opt/odoo-venv/bin/pip install "PyMuPDF==1.19.6"
+          /opt/odoo-venv/bin/python -m pip install --upgrade "pip>=21,<22" wheel
+          /opt/odoo-venv/bin/python -m pip install --only-binary :all: "PyMuPDF==1.19.6"
       - name: Install addons and dependencies
         run: oca_install_addons
         env:
