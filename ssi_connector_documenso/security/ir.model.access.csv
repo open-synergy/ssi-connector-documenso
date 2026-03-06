@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_documenso_backend_manager,documenso.backend manager,model_documenso_backend,connector.group_connector_manager,1,1,1,1
+access_documenso_backend_user,documenso.backend user,model_documenso_backend,base.group_user,1,0,0,0
