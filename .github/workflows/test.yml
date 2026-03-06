@@ -53,6 +53,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Install PyMuPDF
+        run: |
+          /opt/odoo-venv/bin/python -m pip install --upgrade "pip>=21,<22" wheel
+          /opt/odoo-venv/bin/python -m pip install --only-binary :all: "PyMuPDF==1.19.4"
       - name: Install addons and dependencies
         run: oca_install_addons
         env:
