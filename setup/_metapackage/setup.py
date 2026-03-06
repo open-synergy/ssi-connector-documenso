@@ -9,7 +9,6 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-ssi_connector_documenso',
-        'odoo14-addon-ssi_connector_documenso_contact',
         'odoo14-addon-ssi_connector_documenso_signing',
     ],
     classifiers=[
