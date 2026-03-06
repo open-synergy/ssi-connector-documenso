@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <menuitem
+        id="menu_documenso_signing"
+        name="Signing"
+        parent="ssi_connector_documenso.menu_documenso_root"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_documenso_signature_requests"
+        name="Signature Requests"
+        parent="menu_documenso_signing"
+        action="action_documenso_signature_request"
+        sequence="10"
+    />
+</odoo>

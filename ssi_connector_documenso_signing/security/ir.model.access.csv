@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_documenso_signature_request_manager,documenso.signature.request manager,model_documenso_signature_request,connector.group_connector_manager,1,1,1,1
+access_documenso_signature_request_user,documenso.signature.request user,model_documenso_signature_request,base.group_user,1,1,1,0
+access_documenso_signature_signer_manager,documenso.signature.signer manager,model_documenso_signature_signer,connector.group_connector_manager,1,1,1,1
+access_documenso_signature_signer_user,documenso.signature.signer user,model_documenso_signature_signer,base.group_user,1,1,1,0
