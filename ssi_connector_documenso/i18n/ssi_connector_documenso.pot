@@ -1,9 +1,6 @@
-# Copyright 2026 OpenSynergy Indonesia
-# Copyright 2026 PT. Simetri Sinergi Indonesia
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * ssi_connector_documenso
+# 	* ssi_connector_documenso
 #
 msgid ""
 msgstr ""
@@ -15,3 +12,174 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__api_key
+msgid "API Key"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__version
+msgid "API Version"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,help:ssi_connector_documenso.field_documenso_backend__api_key
+msgid "API token generated from your Documenso account settings."
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields.selection,name:ssi_connector_documenso.selection__documenso_backend__version__v1
+msgid "API v1"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields.selection,name:ssi_connector_documenso.selection__documenso_backend__version__v2
+msgid "API v2"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__active
+msgid "Active"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_form
+msgid "Archived"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_form
+msgid "Backend Name"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.ui.menu,name:ssi_connector_documenso.menu_documenso_backend
+msgid "Backends"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__base_url
+msgid "Base URL"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.ui.menu,name:ssi_connector_documenso.menu_documenso_binding
+msgid "Bindings"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__company_id
+msgid "Company"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.ui.menu,name:ssi_connector_documenso.menu_documenso_configuration
+msgid "Configuration"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_form
+msgid "Connection"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: code:addons/ssi_connector_documenso/models/documenso_backend.py:0
+#, python-format
+msgid "Connection Test"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: code:addons/ssi_connector_documenso/models/documenso_backend.py:0
+#, python-format
+msgid "Could not connect to Documenso: %s"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.ui.menu,name:ssi_connector_documenso.menu_documenso_root
+msgid "Documenso"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: code:addons/ssi_connector_documenso/models/documenso_backend.py:0
+#, python-format
+msgid "Documenso API error: %s"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model,name:ssi_connector_documenso.model_documenso_backend
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_form
+msgid "Documenso Backend"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.actions.act_window,name:ssi_connector_documenso.action_documenso_backend
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_tree
+msgid "Documenso Backends"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,help:ssi_connector_documenso.field_documenso_backend__base_url
+msgid "Documenso instance URL, e.g. https://app.documenso.com"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_form
+msgid "General"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__id
+msgid "ID"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.model.fields,field_description:ssi_connector_documenso.field_documenso_backend__name
+msgid "Name"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: code:addons/ssi_connector_documenso/models/documenso_backend.py:0
+#, python-format
+msgid "Successfully connected to Documenso!"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_form
+msgid "Test Connection"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_form
+msgid "https://app.documenso.com"
+msgstr ""
