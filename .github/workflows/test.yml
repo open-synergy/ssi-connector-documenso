@@ -54,7 +54,9 @@ jobs:
         with:
           persist-credentials: false
       - name: Install system dependencies
-        run: apt-get update && apt-get install -y libmupdf-dev libfreetype-dev
+        run: |
+          apt-get update
+          apt-get install -y libmupdf-dev libfreetype-dev libharfbuzz-dev libjbig2dec0-dev libopenjp2-7-dev libjpeg-dev libgumbo-dev
       - name: Install addons and dependencies
         run: oca_install_addons
         env:
