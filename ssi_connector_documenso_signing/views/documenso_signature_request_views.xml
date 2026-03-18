@@ -65,7 +65,11 @@
                             <field name="backend_id" />
                             <field name="res_model" />
                             <field name="res_id" />
-                            <field name="py3o_report_id" />
+                            <field name="allowed_py3o_report_ids" invisible="1" />
+                            <field
+                                name="py3o_report_id"
+                                domain="[('id', 'in', allowed_py3o_report_ids)]"
+                            />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"

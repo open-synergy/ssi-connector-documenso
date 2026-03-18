@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="documenso_signing_page">
+        <page name="page_documenso_signing" string="Signature Requests">
+            <button
+                name="action_open_signature_requests"
+                string="Open Signature Requests"
+                type="object"
+                class="oe_highlight"
+                icon="fa-pencil-square-o"
+            />
+            <field
+                name="signature_request_ids"
+                nolabel="1"
+                options="{'always_reload': True}"
+            />
+        </page>
+    </template>
+</odoo>

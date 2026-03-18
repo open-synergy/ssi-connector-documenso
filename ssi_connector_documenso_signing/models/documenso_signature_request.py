@@ -68,12 +68,19 @@ class DocumensoSignatureRequest(models.Model):
         compute="_compute_res_name",
         store=True,
     )
+    allowed_py3o_report_ids = fields.Many2many(
+        string="Allowed Py3o Reports",
+        comodel_name="ir.actions.report",
+        compute="_compute_allowed_py3o_report_ids",
+        store=False,
+    )
     py3o_report_id = fields.Many2one(
         comodel_name="ir.actions.report",
         string="Py3o Report",
         required=True,
-        domain=[("report_type", "=", "py3o")],
-        help="The py3o report action used to generate the PDF document.",
+        domain="[('id', 'in', allowed_py3o_report_ids)]",
+        help="The py3o report action used to generate the PDF document. "
+        "Only py3o reports with PDF output are listed.",
     )
     state = fields.Selection(
         selection=[
@@ -138,6 +145,22 @@ class DocumensoSignatureRequest(models.Model):
     # ------------------------------------------------------------------
     # Computed
     # ------------------------------------------------------------------
+
+    @api.depends("res_model")
+    def _compute_allowed_py3o_report_ids(self):
+        Report = self.env["ir.actions.report"]
+        for rec in self:
+            criteria = [
+                ("report_type", "=", "py3o"),
+                ("py3o_filetype", "=", "pdf"),
+            ]
+            if rec.res_model:
+                criteria.append(("model", "=", rec.res_model))
+            rec.allowed_py3o_report_ids = Report.search(criteria)
+
+    @api.onchange("res_model")
+    def _onchange_res_model(self):
+        self.py3o_report_id = False
 
     @api.depends("res_model", "res_id")
     def _compute_res_name(self):
