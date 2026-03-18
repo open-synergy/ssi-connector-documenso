@@ -25,6 +25,7 @@
     "data": [
         "security/ir.model.access.csv",
         "data/ir_cron.xml",
+        "templates/signing_request_templates.xml",
         "views/documenso_signature_request_views.xml",
         "views/menu.xml",
     ],

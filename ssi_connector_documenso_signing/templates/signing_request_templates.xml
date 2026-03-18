@@ -5,6 +5,13 @@
 <odoo>
     <template id="documenso_signing_page">
         <page name="page_documenso_signing" string="Signature Requests">
+            <button
+                name="action_open_signature_requests"
+                string="Open Signature Requests"
+                type="object"
+                class="oe_highlight"
+                icon="fa-pencil-square-o"
+            />
             <field
                 name="signature_request_ids"
                 nolabel="1"

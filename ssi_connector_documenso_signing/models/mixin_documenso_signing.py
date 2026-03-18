@@ -2,9 +2,7 @@
 # Copyright 2026 PT. Simetri Sinergi Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from lxml import etree
-
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 from odoo.addons.ssi_decorator import ssi_decorator
 
@@ -48,16 +46,28 @@ class MixinDocumensoSigning(models.AbstractModel):
 
     @ssi_decorator.insert_on_form_view()
     def _documenso_signing_insert_form_element(self, view_arch):
-        if not self._documenso_signing_create_page:
-            return view_arch
-        nodes = view_arch.xpath(self._documenso_signing_page_xpath)
-        if not nodes:
-            return view_arch
-        page_element = etree.fromstring(
-            '<page name="page_documenso_signing" string="Signature Requests">'
-            '<field name="signature_request_ids" nolabel="1"/>'
-            "</page>"
-        )
-        page_element.find("field").set("options", "{'always_reload': True}")
-        nodes[0].addnext(page_element)
+        if self._documenso_signing_create_page:
+            view_arch = self._add_view_element(
+                view_arch=view_arch,
+                qweb_template_xml_id="ssi_connector_documenso_signing.documenso_signing_page",
+                xpath=self._documenso_signing_page_xpath,
+                position="after",
+            )
         return view_arch
+
+    def action_open_signature_requests(self):
+        self.ensure_one()
+        return {
+            "name": _("Signature Requests"),
+            "type": "ir.actions.act_window",
+            "res_model": "documenso.signature.request",
+            "view_mode": "tree,form",
+            "domain": [
+                ("res_model", "=", self._name),
+                ("res_id", "=", self.id),
+            ],
+            "context": {
+                "default_res_model": self._name,
+                "default_res_id": self.id,
+            },
+        }
