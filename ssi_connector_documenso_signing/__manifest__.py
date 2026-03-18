@@ -15,6 +15,7 @@
         "ssi_connector_documenso",
         "report_py3o",
         "queue_job",
+        "ssi_decorator",
     ],
     "external_dependencies": {
         "python": [
