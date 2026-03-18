@@ -51,6 +51,11 @@ msgid ""
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__allowed_py3o_report_ids
+msgid "Allowed Py3o Reports"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signature_signer__role__approver
 msgid "Approver"
 msgstr ""
@@ -117,6 +122,7 @@ msgstr ""
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__display_name
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -242,6 +248,7 @@ msgstr ""
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__id
 msgid "ID"
 msgstr ""
 
@@ -279,6 +286,7 @@ msgstr ""
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer____last_update
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -310,6 +318,11 @@ msgid "Messages"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model,name:ssi_connector_documenso_signing.model_mixin_documenso_signing
+msgid "Mixin Object for Documenso Signing"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr ""
@@ -333,6 +346,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__note
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_form
 msgid "Notes"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__signature_request_count
+msgid "Num. of Signature Requests"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -376,6 +394,11 @@ msgstr ""
 #: code:addons/ssi_connector_documenso_signing/models/documenso_signature_request.py:0
 #, python-format
 msgid "Only draft requests can be sent to Documenso."
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_page
+msgid "Open Signature Requests"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -457,10 +480,14 @@ msgid "Signature Request"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: code:addons/ssi_connector_documenso_signing/models/mixin_documenso_signing.py:0
 #: model:ir.actions.act_window,name:ssi_connector_documenso_signing.action_documenso_signature_request
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__signature_request_ids
 #: model:ir.ui.menu,name:ssi_connector_documenso_signing.menu_documenso_signature_requests
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_page
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_search
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_tree
+#, python-format
 msgid "Signature Requests"
 msgstr ""
 
@@ -568,7 +595,9 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__py3o_report_id
-msgid "The py3o report action used to generate the PDF document."
+msgid ""
+"The py3o report action used to generate the PDF document. Only py3o reports "
+"with PDF output are listed."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
