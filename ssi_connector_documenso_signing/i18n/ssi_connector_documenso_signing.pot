@@ -115,6 +115,20 @@ msgid "Created on"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_height
+msgid ""
+"Custom height of the signature field as a percentage of the page height "
+"(0–100). Leave at 0 to use the default minimum of 3%."
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_width
+msgid ""
+"Custom width of the signature field as a percentage of the page width "
+"(0–100). Leave at 0 to use the default minimum of 15%."
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signature_signer__signing_status__declined
 msgid "Declined"
 msgstr ""
@@ -208,6 +222,12 @@ msgstr ""
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_signer__documenso_recipient_id
 msgid "External ID of this recipient on Documenso."
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: code:addons/ssi_connector_documenso_signing/models/documenso_signature_request.py:0
+#, python-format
+msgid "Failed to retrieve status from Documenso: %s"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -474,6 +494,11 @@ msgid "Signature Anchor"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_height
+msgid "Signature Height (%)"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__request_id
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_form
 msgid "Signature Request"
@@ -489,6 +514,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_tree
 #, python-format
 msgid "Signature Requests"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_width
+msgid "Signature Width (%)"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
