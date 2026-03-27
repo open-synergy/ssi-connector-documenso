@@ -259,13 +259,20 @@ class DocumensoSignatureRequest(models.Model):
         doc = fitz.open(stream=pdf_bytes, filetype="pdf")
         results = {}  # anchor_text -> [position_dict, ...]
 
-        # Collect all anchors we need to search for
-        anchors = set()
+        # Collect all anchors we need to search for, along with their
+        # per-signer custom sizes (fallback to defaults when not set).
+        _DEFAULT_SIG_W = 15.0
+        _DEFAULT_SIG_H = 3.0
+        anchor_sizes = {}  # anchor_text -> (min_width_pct, min_height_pct)
         for signer in self.signer_ids:
             if signer.signature_anchor:
-                anchors.add(signer.signature_anchor.strip())
+                anchor = signer.signature_anchor.strip()
+                anchor_sizes[anchor] = (
+                    signer.signature_width or _DEFAULT_SIG_W,
+                    signer.signature_height or _DEFAULT_SIG_H,
+                )
 
-        if not anchors:
+        if not anchor_sizes:
             doc.close()
             return results
 
@@ -275,7 +282,7 @@ class DocumensoSignatureRequest(models.Model):
             page_w = page_rect.width
             page_h = page_rect.height
 
-            for anchor in anchors:
+            for anchor, (min_w, min_h) in anchor_sizes.items():
                 # search_for returns a list of fitz.Rect for each match
                 rects = page.search_for(anchor)
                 for rect in rects:
@@ -286,10 +293,10 @@ class DocumensoSignatureRequest(models.Model):
                     pct_w = ((rect.x1 - rect.x0) / page_w) * 100.0
                     pct_h = ((rect.y1 - rect.y0) / page_h) * 100.0
 
-                    # Enforce a minimum size for the signature field
-                    # so it's actually usable for signing.
-                    sig_w = max(pct_w, 15.0)
-                    sig_h = max(pct_h, 3.0)
+                    # Use per-signer custom size if set, otherwise enforce
+                    # the minimum so the field is actually usable for signing.
+                    sig_w = max(pct_w, min_w)
+                    sig_h = max(pct_h, min_h)
 
                     results.setdefault(anchor, []).append(
                         {
@@ -580,7 +587,15 @@ class DocumensoSignatureRequest(models.Model):
             raise UserError(
                 _("You can only check status for requests in 'Sent' state.")
             )
-        self._poll_documenso_status()
+        try:
+            self._poll_documenso_status()
+        except Exception as e:
+            _logger.exception(
+                "Error checking Documenso status for request id=%s", self.id
+            )
+            raise UserError(
+                _("Failed to retrieve status from Documenso: %s") % str(e)
+            ) from e
         if self.state == "signed":
             return {
                 "type": "ir.actions.client",
@@ -631,6 +646,16 @@ class DocumensoSignatureRequest(models.Model):
                     request.id,
                 )
 
+    # Valid selection values for the signing_status field
+    _VALID_SIGNING_STATUSES = {
+        "PENDING",
+        "SENT",
+        "OPENED",
+        "SIGNED",
+        "DECLINED",
+        "CANCELLED",
+    }
+
     def _poll_documenso_status(self):
         """Check Documenso API for the current status of this document."""
         self.ensure_one()
@@ -647,10 +672,20 @@ class DocumensoSignatureRequest(models.Model):
             recipients = doc_data.get("recipients") or doc_data.get("signers") or []
             for recipient in recipients:
                 email = recipient.get("email", "")
-                r_status = recipient.get("status") or recipient.get("signingStatus", "")
+                r_status = (
+                    recipient.get("status") or recipient.get("signingStatus", "")
+                ).upper()
                 signer = self.signer_ids.filtered(lambda s: s.partner_id.email == email)
                 if signer and r_status:
-                    signer[0].write({"signing_status": r_status.upper()})
+                    if r_status in self._VALID_SIGNING_STATUSES:
+                        signer[0].write({"signing_status": r_status})
+                    else:
+                        _logger.warning(
+                            "Documenso returned unrecognised signing status '%s' "
+                            "for recipient %s — skipping field update.",
+                            r_status,
+                            email,
+                        )
 
             if status == "COMPLETED":
                 # Download the signed PDF
@@ -734,10 +769,20 @@ class DocumensoSignatureRequest(models.Model):
         recipients = data.get("recipients") or data.get("signers") or []
         for recipient in recipients:
             email = recipient.get("email", "")
-            r_status = recipient.get("status") or recipient.get("signingStatus", "")
+            r_status = (
+                recipient.get("status") or recipient.get("signingStatus", "")
+            ).upper()
             signer = request.signer_ids.filtered(lambda s: s.partner_id.email == email)
             if signer and r_status:
-                signer[0].write({"signing_status": r_status.upper()})
+                if r_status in self._VALID_SIGNING_STATUSES:
+                    signer[0].write({"signing_status": r_status})
+                else:
+                    _logger.warning(
+                        "Documenso webhook: unrecognised signing status '%s' "
+                        "for recipient %s — skipping field update.",
+                        r_status,
+                        email,
+                    )
 
         if event in ("DOCUMENT_COMPLETED", "document.completed"):
             request._poll_documenso_status()

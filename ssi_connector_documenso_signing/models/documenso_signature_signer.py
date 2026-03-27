@@ -68,6 +68,16 @@ class DocumensoSignatureSigner(models.Model):
         "E.g. {{SIGN_1}}, {{SIGN_DIRECTOR}}, {{SIGN_<partner_id>}}. "
         "Must be unique per signer within the same document.",
     )
+    signature_width = fields.Float(
+        string="Signature Width (%)",
+        help="Custom width of the signature field as a percentage of the page width (0–100). "
+        "Leave at 0 to use the default minimum of 15%.",
+    )
+    signature_height = fields.Float(
+        string="Signature Height (%)",
+        help="Custom height of the signature field as a percentage of the page height (0–100). "
+        "Leave at 0 to use the default minimum of 3%.",
+    )
     signing_status = fields.Selection(
         selection=[
             ("PENDING", "Pending"),
