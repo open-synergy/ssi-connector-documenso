@@ -20,26 +20,36 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_needaction
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_needaction
 msgid "Action Needed"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__active
+msgid "Active"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__activity_ids
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__activity_ids
 msgid "Activities"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__activity_exception_decoration
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__activity_state
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__activity_state
 msgid "Activity State"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__activity_type_icon
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__activity_type_icon
 msgid "Activity Type Icon"
 msgstr ""
 
@@ -52,16 +62,19 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__allowed_py3o_report_ids
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__allowed_py3o_report_ids
 msgid "Allowed Py3o Reports"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signature_signer__role__approver
+#: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signing_template_signer__role__approver
 msgid "Approver"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_attachment_count
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_attachment_count
 msgid "Attachment Count"
 msgstr ""
 
@@ -72,6 +85,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signature_signer__role__cc
+#: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signing_template_signer__role__cc
 msgid "CC (Copy)"
 msgstr ""
 
@@ -93,6 +107,11 @@ msgid "Check Status"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__code
+msgid "Code"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__company_id
 msgid "Company"
 msgstr ""
@@ -103,19 +122,44 @@ msgid "Contact who will sign the document."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_create_signing_wizard_view_form
+msgid "Create"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model,name:ssi_connector_documenso_signing.model_documenso_create_signing_wizard
+msgid "Create Documenso Signature Request Wizard"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: code:addons/ssi_connector_documenso_signing/models/mixin_documenso_signing.py:0
+#: model:ir.actions.act_window,name:ssi_connector_documenso_signing.action_documenso_create_signing_wizard
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_create_signing_wizard_view_form
+#, python-format
+msgid "Create Signing Request"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__create_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__create_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__create_uid
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__create_uid
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__create_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__create_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__create_date
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__create_date
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_height
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template_signer__signature_height
 msgid ""
 "Custom height of the signature field as a percentage of the page height "
 "(0–100). Leave at 0 to use the default minimum of 3%."
@@ -123,6 +167,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_width
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template_signer__signature_width
 msgid ""
 "Custom width of the signature field as a percentage of the page width "
 "(0–100). Leave at 0 to use the default minimum of 15%."
@@ -134,8 +179,16 @@ msgid "Declined"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_create_signing_wizard_view_form
+msgid "Discard"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__display_name
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__display_name
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__display_name
 msgid "Display Name"
 msgstr ""
@@ -148,6 +201,7 @@ msgid "Documenso"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__backend_id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__backend_id
 msgid "Documenso Backend"
 msgstr ""
@@ -173,6 +227,16 @@ msgid "Documenso Signature Signer"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model,name:ssi_connector_documenso_signing.model_documenso_signing_template
+msgid "Documenso Signing Template"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model,name:ssi_connector_documenso_signing.model_documenso_signing_template_signer
+msgid "Documenso Signing Template Signer"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: code:addons/ssi_connector_documenso_signing/models/documenso_signature_request.py:0
 #, python-format
 msgid "Documenso did not return a document ID. Response: %s"
@@ -186,6 +250,7 @@ msgid "Documenso: Update Signature Status"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_template_view_form
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_form
 msgid "Document"
 msgstr ""
@@ -232,21 +297,25 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_follower_ids
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_follower_ids
 msgid "Followers"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_channel_ids
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_channel_ids
 msgid "Followers (Channels)"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_partner_ids
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__activity_type_icon
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
@@ -266,30 +335,38 @@ msgid "Group By"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__id
 msgid "ID"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__activity_exception_icon
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__activity_exception_icon
 msgid "Icon"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__activity_exception_icon
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__activity_exception_icon
 msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__message_needaction
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__message_unread
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__message_needaction
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__message_has_error
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -300,40 +377,75 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_is_follower
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_is_follower
 msgid "Is Follower"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer____last_update
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template____last_update
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__write_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__write_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__write_uid
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__write_uid
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__write_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__write_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__write_date
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__write_date
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_main_attachment_id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_main_attachment_id
 msgid "Main Attachment"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__active
+msgid ""
+"Master data status\n"
+"\n"
+"* Inactive data can not be selected when creating new transaction\n"
+"* Transaction with inactive master data can still be viewed\n"
+"* Set master data as inactive if master data no longger needed,\n"
+"but master data already used on transaction"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__code
+msgid ""
+"Master data unique identifier.\n"
+"\n"
+"* Fill with '/' if You do not need unique identifier\n"
+"* Click 'Generate Code' button to automatically assign code.\n"
+"  Sequence template mush be set to perform this action\n"
+"  Only master data with '/' code will be assign automatic code"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_has_error
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_has_error
 msgid "Message Delivery error"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_ids
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_ids
 msgid "Messages"
 msgstr ""
 
@@ -344,22 +456,41 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__name
+msgid "Name"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_page
+msgid "New Signing Request"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__activity_summary
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__activity_summary
 msgid "Next Activity Summary"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__activity_type_id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__activity_type_id
 msgid "Next Activity Type"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__note
+msgid "Note"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -375,26 +506,31 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_needaction_counter
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_needaction_counter
 msgid "Number of Actions"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_has_error_counter
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_has_error_counter
 msgid "Number of errors"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__message_needaction_counter
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__message_has_error_counter
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__message_unread_counter
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__message_unread_counter
 msgid "Number of unread messages"
 msgstr ""
 
@@ -428,6 +564,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_signer__signing_order
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template_signer__signing_order
 msgid ""
 "Order in which this signer should sign. Lower numbers sign first. Use the "
 "same number for parallel signing."
@@ -436,6 +573,12 @@ msgstr ""
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__pdf_filename
 msgid "PDF Filename"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__partner_code
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_template_view_form
+msgid "Partner Python Code"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -458,7 +601,24 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__py3o_report_id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__py3o_report_id
 msgid "Py3o Report"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template_signer__partner_code
+msgid ""
+"Python expression that resolves to the res.partner for this signer.\n"
+"Available variables:\n"
+"  - document : the source record (env[res_model].browse(res_id) of the signature request)\n"
+"  - env      : Odoo Environment\n"
+"  - time, datetime, dateutil, timezone, float_compare, b64encode, b64decode\n"
+"\n"
+"Examples:\n"
+"  document.partner_id\n"
+"  document.employee_id.user_id.partner_id\n"
+"  env.ref('base.res_partner_1')\n"
+"  env['res.partner'].browse(42)"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -468,12 +628,20 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__activity_user_id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__activity_user_id
 msgid "Responsible User"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__role
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__role
 msgid "Role"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__signing_template_id
+msgid ""
+"Select a signing template to auto-fill source model, report, and signers."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -490,17 +658,21 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_anchor
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__signature_anchor
 msgid "Signature Anchor"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_height
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__signature_height
 msgid "Signature Height (%)"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: code:addons/ssi_connector_documenso_signing/wizards/documenso_create_signing_wizard.py:0
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__request_id
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_form
+#, python-format
 msgid "Signature Request"
 msgstr ""
 
@@ -518,6 +690,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_width
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__signature_width
 msgid "Signature Width (%)"
 msgstr ""
 
@@ -541,7 +714,14 @@ msgstr ""
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__partner_id
 #: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signature_signer__role__signer
+#: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signing_template_signer__role__signer
 msgid "Signer"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__signer_template_ids
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_template_view_form
+msgid "Signer Templates"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -557,6 +737,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__signing_order
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__signing_order
 msgid "Signing Order"
 msgstr ""
 
@@ -566,7 +747,21 @@ msgid "Signing Status"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__signing_template_id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__signing_template_id
+msgid "Signing Template"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.actions.act_window,name:ssi_connector_documenso_signing.action_documenso_signing_template
+#: model:ir.ui.menu,name:ssi_connector_documenso_signing.menu_documenso_signing_templates
+msgid "Signing Templates"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__res_model
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__res_model
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__res_model
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_search
 msgid "Source Model"
 msgstr ""
@@ -577,6 +772,7 @@ msgid "Source Record"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__res_id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__res_id
 msgid "Source Record ID"
 msgstr ""
@@ -601,6 +797,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__activity_state
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__activity_state
 msgid ""
 "Status based on activities\n"
 "Overdue: Due date is already passed\n"
@@ -616,6 +813,19 @@ msgid ""
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__res_model
+msgid ""
+"Technical name of the Odoo model this template applies to (e.g. sale.order, "
+"account.move)."
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__template_id
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_form
+msgid "Template"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_signer__signature_anchor
 msgid ""
 "Text placeholder in the py3o template that Documenso will use to position "
@@ -624,7 +834,15 @@ msgid ""
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template_signer__signature_anchor
+msgid ""
+"Text placeholder in the py3o template that Documenso will use to position "
+"the signature field. E.g. {{SIGN_1}}, {{SIGN_DIRECTOR}}."
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__py3o_report_id
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__py3o_report_id
 msgid ""
 "The py3o report action used to generate the PDF document. Only py3o reports "
 "with PDF output are listed."
@@ -643,21 +861,25 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__activity_exception_decoration
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_unread
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_unread
 msgid "Unread Messages"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_unread_counter
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signature_signer__role__viewer
+#: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signing_template_signer__role__viewer
 msgid "Viewer"
 msgstr ""
 
