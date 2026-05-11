@@ -71,3 +71,17 @@ class MixinDocumensoSigning(models.AbstractModel):
                 "default_res_id": self.id,
             },
         }
+
+    def action_create_signing_request(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Create Signing Request"),
+            "res_model": "documenso.create.signing.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {
+                "default_res_model": self._name,
+                "default_res_id": self.id,
+            },
+        }

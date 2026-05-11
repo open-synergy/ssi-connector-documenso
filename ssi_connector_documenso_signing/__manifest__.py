@@ -28,6 +28,7 @@
         "security/ir.model.access.csv",
         "data/ir_cron.xml",
         "templates/signing_request_templates.xml",
+        "views/documenso_create_signing_wizard_views.xml",
         "views/documenso_signing_template_views.xml",
         "views/documenso_signature_request_views.xml",
         "views/menu.xml",
