@@ -11,6 +11,14 @@
     />
 
     <menuitem
+        id="menu_documenso_signing_templates"
+        name="Signing Templates"
+        parent="menu_documenso_signing"
+        action="action_documenso_signing_template"
+        sequence="5"
+    />
+
+    <menuitem
         id="menu_documenso_signature_requests"
         name="Signature Requests"
         parent="menu_documenso_signing"

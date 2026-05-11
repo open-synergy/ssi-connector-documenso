@@ -2,6 +2,8 @@
 # Copyright 2026 PT. Simetri Sinergi Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from . import documenso_signing_template
+from . import documenso_signing_template_signer
 from . import documenso_signature_request
 from . import documenso_signature_signer
 from . import mixin_documenso_signing

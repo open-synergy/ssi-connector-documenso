@@ -29,6 +29,7 @@ import fitz  # PyMuPDF
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -43,6 +44,12 @@ class DocumensoSignatureRequest(models.Model):
     # ------------------------------------------------------------------
     # Fields
     # ------------------------------------------------------------------
+    signing_template_id = fields.Many2one(
+        comodel_name="documenso.signing.template",
+        string="Signing Template",
+        ondelete="set null",
+        help="Select a signing template to auto-fill source model, report, and signers.",
+    )
     backend_id = fields.Many2one(
         comodel_name="documenso.backend",
         string="Documenso Backend",
@@ -157,6 +164,78 @@ class DocumensoSignatureRequest(models.Model):
             if rec.res_model:
                 criteria.append(("model", "=", rec.res_model))
             rec.allowed_py3o_report_ids = Report.search(criteria)
+
+    @api.onchange("signing_template_id")
+    def _onchange_signing_template_id(self):
+        template = self.signing_template_id
+        if not template:
+            return
+        self.res_model = template.res_model
+        self.py3o_report_id = template.py3o_report_id
+        self._apply_template_signers()
+
+    @api.onchange("res_id")
+    def _onchange_res_id(self):
+        if self.signing_template_id and self.res_id:
+            self._apply_template_signers()
+
+    def _apply_template_signers(self):
+        """Populate signer_ids from the signing template.
+
+        Evaluates each signer template's ``partner_code`` against the source
+        document (``res_model`` / ``res_id``) using the localdict provided by
+        ``mixin.localdict`` (with ``document`` set to the source record).
+        Replaces any existing signer lines.
+        """
+        template = self.signing_template_id
+        if not template or not template.signer_template_ids:
+            return
+        if not self.res_model or not self.res_id:
+            return
+
+        try:
+            source_record = self.env[self.res_model].browse(self.res_id)
+            if not source_record.exists():
+                return
+        except Exception:
+            return
+
+        # Build localdict: use template's mixin, override document with source
+        localdict = template._get_default_localdict()
+        localdict["document"] = source_record
+
+        new_signers = [(5, 0, 0)]  # clear existing
+        for signer_tmpl in template.signer_template_ids:
+            if not signer_tmpl.partner_code:
+                continue
+            try:
+                partner = safe_eval(signer_tmpl.partner_code, localdict)
+                if hasattr(partner, "id"):
+                    partner_id = partner.id
+                else:
+                    partner_id = int(partner)
+            except Exception as exc:
+                _logger.warning(
+                    "Failed to evaluate partner_code for signer template %s: %s",
+                    signer_tmpl.id,
+                    exc,
+                )
+                continue
+            new_signers.append(
+                (
+                    0,
+                    0,
+                    {
+                        "partner_id": partner_id,
+                        "role": signer_tmpl.role,
+                        "signing_order": signer_tmpl.signing_order,
+                        "signature_anchor": signer_tmpl.signature_anchor,
+                        "signature_width": signer_tmpl.signature_width,
+                        "signature_height": signer_tmpl.signature_height,
+                    },
+                )
+            )
+        self.signer_ids = new_signers
 
     @api.onchange("res_model")
     def _onchange_res_model(self):
