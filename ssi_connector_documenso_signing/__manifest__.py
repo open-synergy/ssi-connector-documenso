@@ -4,7 +4,7 @@
 
 {
     "name": "Documenso Connector - Signing",
-    "version": "14.0.1.2.0",
+    "version": "14.0.1.3.0",
     "category": "Connector",
     "summary": "Generate PDF documents via py3o and send to Documenso for "
     "digital signatures with multi-signer support.",

@@ -22,7 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [ssi_connector_documenso](ssi_connector_documenso/) | 14.0.1.0.0 |  | Documenso Connector
-[ssi_connector_documenso_signing](ssi_connector_documenso_signing/) | 14.0.1.2.0 |  | Generate PDF documents via py3o and send to Documenso for digital signatures with multi-signer support.
+[ssi_connector_documenso_signing](ssi_connector_documenso_signing/) | 14.0.1.3.0 |  | Generate PDF documents via py3o and send to Documenso for digital signatures with multi-signer support.
 
 [//]: # (end addons)
 
