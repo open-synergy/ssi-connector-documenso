@@ -5,21 +5,19 @@
 <odoo>
     <template id="documenso_signing_page">
         <page name="page_documenso_signing" string="Signature Requests">
-            <div class="oe_button_box" name="button_box_documenso">
-                <button
-                    name="action_create_signing_request"
-                    string="New Signing Request"
-                    type="object"
-                    class="oe_highlight"
-                    icon="fa-plus"
-                />
-                <button
-                    name="action_open_signature_requests"
-                    string="Open Signature Requests"
-                    type="object"
-                    icon="fa-pencil-square-o"
-                />
-            </div>
+            <button
+                name="action_create_signing_request"
+                string="New Signing Request"
+                type="object"
+                class="oe_highlight"
+                icon="fa-plus"
+            />
+            <button
+                name="action_open_signature_requests"
+                string="Open Signature Requests"
+                type="object"
+                icon="fa-pencil-square-o"
+            />
             <field
                 name="signature_request_ids"
                 nolabel="1"
