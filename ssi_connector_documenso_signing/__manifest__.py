@@ -17,6 +17,7 @@
         "queue_job",
         "ssi_decorator",
         "ssi_localdict_mixin",
+        "ssi_master_data_mixin",
     ],
     "external_dependencies": {
         "python": [

@@ -8,12 +8,8 @@ from odoo import api, fields, models
 class DocumensoSigningTemplate(models.Model):
     _name = "documenso.signing.template"
     _description = "Documenso Signing Template"
-    _inherit = ["mixin.localdict"]
+    _inherit = ["mixin.master_data", "mixin.localdict"]
 
-    name = fields.Char(
-        string="Name",
-        required=True,
-    )
     res_model = fields.Char(
         string="Source Model",
         required=True,
@@ -38,9 +34,6 @@ class DocumensoSigningTemplate(models.Model):
         inverse_name="template_id",
         string="Signer Templates",
         copy=True,
-    )
-    active = fields.Boolean(
-        default=True,
     )
 
     @api.depends("res_model")
