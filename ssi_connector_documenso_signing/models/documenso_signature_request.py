@@ -200,7 +200,10 @@ class DocumensoSignatureRequest(models.Model):
         except Exception:
             return
 
-        # Build localdict: use template's mixin, override document with source
+        # Build localdict from mixin, then override 'document' to be the
+        # source record (env[res_model].browse(res_id) of this request)
+        # so that partner_code expressions like 'document.partner_id' work
+        # against the actual source document, not the signing template.
         localdict = template._get_default_localdict()
         localdict["document"] = source_record
 

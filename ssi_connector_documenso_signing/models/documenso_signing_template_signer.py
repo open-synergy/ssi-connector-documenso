@@ -52,10 +52,15 @@ class DocumensoSigningTemplateSigner(models.Model):
         string="Partner Python Code",
         required=True,
         help="Python expression that resolves to the res.partner for this signer.\n"
-        "Available variables: env, document (the source record), "
-        "time, datetime, dateutil, timezone, float_compare, b64encode, b64decode.\n\n"
+        "Available variables:\n"
+        "  - document : the source record (env[res_model].browse(res_id) of the "
+        "signature request)\n"
+        "  - env      : Odoo Environment\n"
+        "  - time, datetime, dateutil, timezone, float_compare, "
+        "b64encode, b64decode\n\n"
         "Examples:\n"
         "  document.partner_id\n"
+        "  document.employee_id.user_id.partner_id\n"
         "  env.ref('base.res_partner_1')\n"
         "  env['res.partner'].browse(42)",
     )
