@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="documenso_create_signing_wizard_view_form" model="ir.ui.view">
+        <field name="name">documenso.create.signing.wizard form</field>
+        <field name="model">documenso.create.signing.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Signing Request">
+                <group>
+                    <field name="res_model" invisible="1" />
+                    <field name="res_id" invisible="1" />
+                    <field name="signing_template_id" />
+                    <field name="backend_id" />
+                </group>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="Create"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Discard" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_documenso_create_signing_wizard" model="ir.actions.act_window">
+        <field name="name">Create Signing Request</field>
+        <field name="res_model">documenso.create.signing.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

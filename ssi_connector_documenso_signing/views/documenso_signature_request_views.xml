@@ -61,6 +61,11 @@
                         </h1>
                     </div>
                     <group>
+                        <group string="Template">
+                            <field name="signing_template_id" />
+                        </group>
+                    </group>
+                    <group>
                         <group string="Document">
                             <field name="backend_id" />
                             <field name="res_model" />

@@ -16,6 +16,8 @@
         "report_py3o",
         "queue_job",
         "ssi_decorator",
+        "ssi_localdict_mixin",
+        "ssi_master_data_mixin",
     ],
     "external_dependencies": {
         "python": [
@@ -26,6 +28,8 @@
         "security/ir.model.access.csv",
         "data/ir_cron.xml",
         "templates/signing_request_templates.xml",
+        "views/documenso_create_signing_wizard_views.xml",
+        "views/documenso_signing_template_views.xml",
         "views/documenso_signature_request_views.xml",
         "views/menu.xml",
     ],
