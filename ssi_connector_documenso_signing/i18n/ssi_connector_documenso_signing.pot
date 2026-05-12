@@ -19,6 +19,18 @@ msgid "# Signers"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: code:addons/ssi_connector_documenso_signing/models/mixin_documenso_signing_approval.py:0
+#, python-format
+msgid "%s %s approved via Documenso signing"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: code:addons/ssi_connector_documenso_signing/models/mixin_documenso_signing_approval.py:0
+#, python-format
+msgid "%s %s rejected — Documenso signing was cancelled"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__message_needaction
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__message_needaction
 msgid "Action Needed"
@@ -27,6 +39,21 @@ msgstr ""
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__active
 msgid "Active"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__active_approval_ids
+msgid "Active Approvals"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__active_approver_partner_ids
+msgid "Active Partners"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__active_approver_user_ids
+msgid "Active Users"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -64,6 +91,37 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__allowed_py3o_report_ids
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__allowed_py3o_report_ids
 msgid "Allowed Py3o Reports"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__approval_template_id
+msgid "Approval Configuration"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__approval_signature_request_id
+msgid "Approval Signature Request"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_approval_page
+msgid "Approval Signing Request"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model,name:ssi_connector_documenso_signing.model_approval_template
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__approval_template_id
+msgid "Approval Template"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__approval_ids
+msgid "Approvals"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__approved
+msgid "Approved"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -184,12 +242,14 @@ msgid "Discard"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_approval_template__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__display_name
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -227,7 +287,13 @@ msgid "Documenso Signature Signer"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.approval_template_view_form_documenso
+msgid "Documenso Signing"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model,name:ssi_connector_documenso_signing.model_documenso_signing_template
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_approval_template__documenso_signing_template_id
 msgid "Documenso Signing Template"
 msgstr ""
 
@@ -335,12 +401,14 @@ msgid "Group By"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_approval_template__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__id
 msgid "ID"
 msgstr ""
 
@@ -382,12 +450,14 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_approval_template____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template_signer____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing____last_update
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -455,6 +525,11 @@ msgid "Mixin Object for Documenso Signing"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model,name:ssi_connector_documenso_signing.model_mixin_documenso_signing_approval
+msgid "Mixin Object for Documenso Signing Approval"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__my_activity_date_deadline
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__my_activity_date_deadline
 msgid "My Activity Deadline"
@@ -466,6 +541,12 @@ msgid "Name"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__need_validation
+msgid "Need Validation"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_approval_page
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_page
 msgid "New Signing Request"
 msgstr ""
@@ -489,6 +570,11 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__next_approval_ids
+msgid "Next Approvals"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__note
 msgid "Note"
 msgstr ""
@@ -501,6 +587,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__signature_request_count
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__signature_request_count
 msgid "Num. of Signature Requests"
 msgstr ""
 
@@ -553,6 +640,7 @@ msgid "Only draft requests can be sent to Documenso."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_approval_page
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_page
 msgid "Open Signature Requests"
 msgstr ""
@@ -622,6 +710,11 @@ msgid ""
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_form
 msgid "Reset to Draft"
 msgstr ""
@@ -680,7 +773,9 @@ msgstr ""
 #: code:addons/ssi_connector_documenso_signing/models/mixin_documenso_signing.py:0
 #: model:ir.actions.act_window,name:ssi_connector_documenso_signing.action_documenso_signature_request
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing__signature_request_ids
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__signature_request_ids
 #: model:ir.ui.menu,name:ssi_connector_documenso_signing.menu_documenso_signature_requests
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_approval_page
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_signing_page
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_search
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_tree
@@ -854,6 +949,14 @@ msgid "The role this contact plays in the signing process."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__approval_signature_request_id
+msgid ""
+"The specific signature request used to determine approval status. Set "
+"automatically when the approval template uses a Documenso signing template. "
+"Other signature requests on this document are not affected."
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_form
 msgid ""
 "This will generate the PDF and send it to Documenso for signing. Continue?"
@@ -878,9 +981,22 @@ msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_mixin_documenso_signing_approval__active_approver_user_ids
+msgid "Users that can approve/reject document"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signature_signer__role__viewer
 #: model:ir.model.fields.selection,name:ssi_connector_documenso_signing.selection__documenso_signing_template_signer__role__viewer
 msgid "Viewer"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_approval_template__documenso_signing_template_id
+msgid ""
+"When set, the approval process will be replaced by a Documenso signature "
+"request created from this template. Approval is considered complete when all"
+" signature requests are in 'signed' state."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
