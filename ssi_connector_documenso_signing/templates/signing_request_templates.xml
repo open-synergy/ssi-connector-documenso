@@ -26,4 +26,35 @@
             />
         </page>
     </template>
+
+    <template id="documenso_signing_approval_page">
+        <page name="page_documenso_signing" string="Signature Requests">
+            <group name="group_approval_signing" string="Approval Signing Request">
+                <field
+                    name="approval_signature_request_id"
+                    widget="many2one"
+                    options="{'no_create': True, 'no_quick_create': True}"
+                />
+            </group>
+            <button
+                name="action_create_signing_request"
+                string="New Signing Request"
+                type="object"
+                class="oe_highlight mr-1"
+                icon="fa-plus"
+            />
+            <button
+                name="action_open_signature_requests"
+                string="Open Signature Requests"
+                type="object"
+                class="mr-1"
+                icon="fa-pencil-square-o"
+            />
+            <field
+                name="signature_request_ids"
+                nolabel="1"
+                options="{'always_reload': True}"
+            />
+        </page>
+    </template>
 </odoo>

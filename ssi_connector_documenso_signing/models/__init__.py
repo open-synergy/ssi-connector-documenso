@@ -7,3 +7,6 @@ from . import documenso_signing_template_signer
 from . import documenso_signature_request
 from . import documenso_signature_signer
 from . import mixin_documenso_signing
+from . import approval_template
+from . import mixin_documenso_signing_approval
+from . import documenso_signature_request_approval

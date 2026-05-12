@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="approval_template_view_form_documenso" model="ir.ui.view">
+        <field name="name">approval.template.form.documenso</field>
+        <field name="model">approval.template</field>
+        <field
+            name="inherit_id"
+            ref="ssi_multiple_approval_mixin.approval_template_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='page_detail']" position="before">
+                <page name="page_documenso_signing" string="Documenso Signing">
+                    <group name="group_documenso_signing_1" colspan="4" col="2">
+                        <field name="documenso_signing_template_id" colspan="4" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

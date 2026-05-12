@@ -18,6 +18,7 @@
         "ssi_decorator",
         "ssi_localdict_mixin",
         "ssi_master_data_mixin",
+        "ssi_multiple_approval_mixin",
     ],
     "external_dependencies": {
         "python": [
@@ -31,6 +32,7 @@
         "views/documenso_create_signing_wizard_views.xml",
         "views/documenso_signing_template_views.xml",
         "views/documenso_signature_request_views.xml",
+        "views/approval_template_views.xml",
         "views/menu.xml",
     ],
     "installable": True,
