@@ -77,7 +77,6 @@ enable=anomalous-backslash-in-string,
     redefined-builtin,
     manifest-external-assets
 
-
 [REPORTS]
 msg-template={path}:{line}: [{msg_id}({symbol}), {obj}] {msg}
 output-format=colorized
