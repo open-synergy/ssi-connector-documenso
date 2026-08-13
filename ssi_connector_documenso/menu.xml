@@ -19,7 +19,7 @@
 
     <menuitem
         id="menu_documenso_configuration"
-        name="Configuration"
+        name="Documenso Configuration"
         parent="menu_documenso_root"
         sequence="999"
     />
