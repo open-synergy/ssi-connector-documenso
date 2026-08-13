@@ -992,6 +992,18 @@ msgid "Viewer"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__website_message_ids
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signature_request__website_message_ids
+#: model:ir.model.fields,help:ssi_connector_documenso_signing.field_documenso_signing_template__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,help:ssi_connector_documenso_signing.field_approval_template__documenso_signing_template_id
 msgid ""
 "When set, the approval process will be replaced by a Documenso signature "
