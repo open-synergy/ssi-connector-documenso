@@ -12,6 +12,7 @@
     "depends": [
         "connector",
         "ssi_connector",
+        "web_tour",
     ],
     "external_dependencies": {
         "python": ["requests"],
@@ -19,6 +20,7 @@
     "data": [
         "security/ir.model.access.csv",
         "menu.xml",
+        "views/assets.xml",
         "views/documenso_backend_views.xml",
     ],
     "installable": True,

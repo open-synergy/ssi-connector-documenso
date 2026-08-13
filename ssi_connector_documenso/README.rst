@@ -7,6 +7,12 @@ Documenso Connector
 ===================
 
 
+Work Instruction
+================
+
+* `Documenso Backend <docs/documenso_backend/index.html>`_
+
+
 Installation
 ============
 
