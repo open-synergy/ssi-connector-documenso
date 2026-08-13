@@ -74,11 +74,6 @@ msgid "Company"
 msgstr ""
 
 #. module: ssi_connector_documenso
-#: model:ir.ui.menu,name:ssi_connector_documenso.menu_documenso_configuration
-msgid "Configuration"
-msgstr ""
-
-#. module: ssi_connector_documenso
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_form
 msgid "Connection"
 msgstr ""
@@ -131,6 +126,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:ssi_connector_documenso.action_documenso_backend
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_tree
 msgid "Documenso Backends"
+msgstr ""
+
+#. module: ssi_connector_documenso
+#: model:ir.ui.menu,name:ssi_connector_documenso.menu_documenso_configuration
+msgid "Documenso Configuration"
 msgstr ""
 
 #. module: ssi_connector_documenso
