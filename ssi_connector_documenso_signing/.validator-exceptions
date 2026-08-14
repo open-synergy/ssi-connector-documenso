@@ -1,0 +1,27 @@
+# Vonis penempatan aksi bertombol milik mixin.documenso_signing (issue #23):
+#
+#   action_open_signature_requests  -> N  (nol IK; act_window navigasi murni,
+#     tidak menulis field apa pun -- lihat odoo-development-instruksi-kerja,
+#     references/action-placement.md, tangga N).
+#   action_create_signing_request   -> S3 (IK sendiri, tapi rumahnya di modul
+#     GLUE KONSUMEN mixin.documenso_signing, mis. ssi_letter_documenso_signing
+#     -- bukan repo ini, karena mixin.documenso_signing adalah AbstractModel
+#     tanpa menu/actor/state sendiri).
+#
+# Baris ini TIDAK bisa dinyatakan sebagai `ik <kunci> -- <alasan>` aktif:
+# validate-ik.sh menerbitkan temuan "aksi bertombol tanpa rumah di docs/"
+# lewat warn() (tier `!`), dan kontrak validator bersama
+# (odoo-development/references/validator-contract.md §13) menyatakan tier
+# `!` TIDAK BISA dikecualikan -- fungsi warn() tidak pernah memeriksa berkas
+# ini. Kunci temuannya (dari `validate-ik.sh --findings`) juga tidak memuat
+# karakter '|', sehingga baris aktif apa pun untuk kunci itu akan DITOLAK
+# sebagai ERROR oleh _load_exceptions (kunci wajib disalin dari --findings
+# dan wajib memuat '|'). Diverifikasi empiris: menambahkan baris aktif
+# `ik aksi-bertombol-tanpa-rumah-di-docs-kandidat-putuskan-s-i-n-l -- ...`
+# mengubah hasil dari `status=OK warn=1` menjadi `status=FAILED error=1`.
+#
+# Modul ini karenanya tetap mencetak 1 peringatan permanen dari
+# validate-ik.sh untuk temuan ini -- pre-commit-gate.sh (vs-head.sh)
+# mengonfirmasi peringatan ini WARISAN, bukan baru, sehingga tidak menahan
+# commit. Lihat komentar di issue open-synergy/ssi-connector-documenso#23
+# untuk pembahasan lengkap dan usulan perbaikan validate-ik.sh.

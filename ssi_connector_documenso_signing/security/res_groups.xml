@@ -16,4 +16,18 @@
             eval="[(4, ref('documenso_signature_request_user_group'))]"
         />
     </record>
+
+    <record id="documenso_signing_template_group" model="res.groups">
+        <field name="name">Documenso Signing Template Configurator</field>
+        <field name="category_id" ref="ssi_connector.connector_module_category" />
+    </record>
+
+    <!-- Keep today's access unchanged: every connector manager still gets
+         the new configurator group, mirroring the pattern above. -->
+    <record id="connector.group_connector_manager" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('documenso_signing_template_group'))]"
+        />
+    </record>
 </odoo>
