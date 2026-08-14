@@ -190,3 +190,62 @@ scenarios:
               py3o_report_id:
                 type: "value"
                 operator: "is_falsy"
+
+  - name: "Access rights: configurator group required to write"
+    steps:
+      - step: "Create template as admin"
+        action: "create"
+        model: "documenso.signing.template"
+        save_as: "template"
+        as_user: "base.user_admin"
+        values:
+          name: "Test Signing Template Access"
+          code: "DST-TPL-ACCESS-001"
+          res_model: "res.partner"
+      - step: "Create a plain internal user without the configurator group"
+        action: "create"
+        model: "res.users"
+        save_as: "plain_user"
+        values:
+          name: "Plain Internal User"
+          login: "plain-template-user@example.com"
+          groups_id: [[6, 0, ["REF: base.group_user"]]]
+      - step: "Create a user with the new configurator group"
+        action: "create"
+        model: "res.users"
+        save_as: "configurator_user"
+        values:
+          name: "Template Configurator User"
+          login: "template-configurator-user@example.com"
+          groups_id:
+            [
+              [
+                6,
+                0,
+                [
+                  "REF: base.group_user",
+                  "REF: ssi_connector_documenso_signing.documenso_signing_template_group",
+                ],
+              ],
+            ]
+      - step: "Plain user cannot write the template"
+        action: "write"
+        target: "template"
+        as_user: "plain_user"
+        expect_error:
+          type: "AccessError"
+        values:
+          name: "Should Not Be Written"
+      - step: "Configurator user can write the template"
+        action: "write"
+        target: "template"
+        as_user: "configurator_user"
+        values:
+          name: "Test Signing Template Access Updated"
+      - step: "Assert configurator write succeeded"
+        action: "assert"
+        target: "template"
+        asserts:
+          name:
+            type: "value"
+            expected: "Test Signing Template Access Updated"
