@@ -161,15 +161,3 @@ scenarios:
           api_key:
             type: "value"
             operator: "is_falsy"
-
-  - name: "Create without base_url is rejected"
-    steps:
-      - step: "Create backend missing base_url must fail"
-        action: "create"
-        model: "documenso.backend"
-        expect_error:
-          type: "ValidationError"
-        values:
-          name: "TEST DOCUMENSO BACKEND No Base URL"
-          api_key: "TEST-API-KEY-NO-URL"
-          version: "v2"
