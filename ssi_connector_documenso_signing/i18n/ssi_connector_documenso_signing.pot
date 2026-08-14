@@ -180,25 +180,25 @@ msgid "Contact who will sign the document."
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_create_signing_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.create_documenso_signature_request_view_form
 msgid "Create"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model:ir.model,name:ssi_connector_documenso_signing.model_documenso_create_signing_wizard
-msgid "Create Documenso Signature Request Wizard"
+#: model:ir.model,name:ssi_connector_documenso_signing.model_create_documenso_signature_request
+msgid "Create Documenso Signature Request"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: code:addons/ssi_connector_documenso_signing/models/mixin_documenso_signing.py:0
-#: model:ir.actions.act_window,name:ssi_connector_documenso_signing.action_documenso_create_signing_wizard
-#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_create_signing_wizard_view_form
+#: model:ir.actions.act_window,name:ssi_connector_documenso_signing.create_documenso_signature_request_action
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.create_documenso_signature_request_view_form
 #, python-format
 msgid "Create Signing Request"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__create_uid
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__create_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__create_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__create_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__create_uid
@@ -207,7 +207,7 @@ msgid "Created by"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__create_date
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__create_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__create_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__create_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__create_date
@@ -237,13 +237,13 @@ msgid "Declined"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.documenso_create_signing_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.create_documenso_signature_request_view_form
 msgid "Discard"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_approval_template__display_name
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__display_name
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__display_name
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__display_name
@@ -261,7 +261,7 @@ msgid "Documenso"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__backend_id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__backend_id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__backend_id
 msgid "Documenso Backend"
 msgstr ""
@@ -402,7 +402,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_approval_template__id
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__id
@@ -451,7 +451,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso_signing
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_approval_template____last_update
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard____last_update
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer____last_update
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template____last_update
@@ -462,7 +462,7 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__write_uid
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__write_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__write_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__write_uid
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__write_uid
@@ -471,7 +471,7 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__write_date
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__write_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__write_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__write_date
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__write_date
@@ -762,11 +762,16 @@ msgid "Signature Height (%)"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: code:addons/ssi_connector_documenso_signing/wizards/documenso_create_signing_wizard.py:0
+#: code:addons/ssi_connector_documenso_signing/wizards/create_documenso_signature_request.py:0
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_signer__request_id
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_form
 #, python-format
 msgid "Signature Request"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
+#: model:res.groups,name:ssi_connector_documenso_signing.documenso_signature_request_user_group
+msgid "Signature Request User"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
@@ -842,7 +847,7 @@ msgid "Signing Status"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__signing_template_id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__signing_template_id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__signing_template_id
 msgid "Signing Template"
 msgstr ""
@@ -854,7 +859,7 @@ msgid "Signing Templates"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__res_model
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__res_model
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__res_model
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signing_template__res_model
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso_signing.view_documenso_signature_request_search
@@ -867,7 +872,7 @@ msgid "Source Record"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
-#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_create_signing_wizard__res_id
+#: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_create_documenso_signature_request__res_id
 #: model:ir.model.fields,field_description:ssi_connector_documenso_signing.field_documenso_signature_request__res_id
 msgid "Source Record ID"
 msgstr ""
