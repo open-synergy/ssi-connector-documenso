@@ -27,6 +27,8 @@ _logger = logging.getLogger(__name__)
 
 
 class DocumensoWebhookController(http.Controller):
+    """Expose the HTTP endpoint Documenso calls back on signing events."""
+
     @http.route(
         "/documenso/webhook",
         type="json",

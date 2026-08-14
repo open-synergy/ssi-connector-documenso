@@ -183,17 +183,44 @@ class DocumensoSigningAdapter(Component):
     # ------------------------------------------------------------------ #
 
     def search(self, *args, **kwargs):
+        """Return the raw list of documents known to Documenso.
+
+        Present only to satisfy the ``CRUDAdapter`` interface; unlike a
+        real search it ignores ``args``/``kwargs`` and always proxies to
+        ``GET /document``.
+
+        :returns: API response dict with the document list
+        """
         return self._request("get", "document")
 
     def read(self, external_id, *args, **kwargs):
+        """Delegate to ``get_document`` after the parent no-op call.
+
+        :param external_id: Documenso document ID
+        :returns: dict with document details (see ``get_document``)
+        """
         super().read(external_id, *args, **kwargs)
         return self.get_document(external_id)
 
     def create(self, data):
+        """Reject direct creation through the generic CRUD interface.
+
+        :param data: unused
+        :raises NotImplementedError: always — use ``create_document()``
+            instead so the multipart PDF upload flow is followed
+        """
         super().create(data)
         raise NotImplementedError("Use create_document() for signing workflow.")
 
     def write(self, external_id, data):
+        """Reject direct writes through the generic CRUD interface.
+
+        :param external_id: unused
+        :param data: unused
+        :raises NotImplementedError: always — use the dedicated methods
+            (``add_signers``, ``create_fields``, ``send_document``, …)
+            instead
+        """
         super().write(external_id, data)
         raise NotImplementedError("Use specific methods for document operations.")
 

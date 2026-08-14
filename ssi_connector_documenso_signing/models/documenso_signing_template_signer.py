@@ -6,6 +6,13 @@ from odoo import fields, models
 
 
 class DocumensoSigningTemplateSigner(models.Model):
+    """Define one signer slot within a ``documenso.signing.template``.
+
+    ``partner_code`` is a Python expression evaluated against the source
+    document to resolve the actual ``res.partner`` when the template is
+    applied to a signature request.
+    """
+
     _name = "documenso.signing.template.signer"
     _description = "Documenso Signing Template Signer"
     _order = "signing_order, id"

@@ -14,6 +14,11 @@ class DocumensoSignatureRequestApproval(models.Model):
     _inherit = "documenso.signature.request"
 
     def write(self, vals):
+        """Notify linked approval documents on signed/cancelled transitions.
+
+        :param vals: values passed to the standard ``write()``
+        :return: the result of the overridden ``write()``
+        """
         result = super().write(vals)
         new_state = vals.get("state")
         if new_state in ("signed", "cancelled"):

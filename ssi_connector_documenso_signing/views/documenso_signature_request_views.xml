@@ -106,6 +106,22 @@
                                     <field name="signing_status" />
                                     <field name="documenso_recipient_id" readonly="1" />
                                 </tree>
+                                <form>
+                                    <group>
+                                        <field name="signing_order" />
+                                        <field name="partner_id" />
+                                        <field name="partner_email" />
+                                        <field name="role" />
+                                        <field name="signature_anchor" />
+                                        <field name="signature_width" />
+                                        <field name="signature_height" />
+                                        <field name="signing_status" />
+                                        <field
+                                            name="documenso_recipient_id"
+                                            readonly="1"
+                                        />
+                                    </group>
+                                </form>
                             </field>
                         </page>
                         <page string="Notes" name="notes">

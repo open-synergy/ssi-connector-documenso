@@ -52,6 +52,15 @@ class MixinDocumensoSigningApproval(models.AbstractModel):
 
     @ssi_decorator.insert_on_form_view()
     def _documenso_signing_insert_form_element(self, view_arch):
+        """Insert the approval-aware "Documenso Signing" page.
+
+        Overrides the base mixin's hook to use the approval-specific
+        QWeb template (``documenso_signing_approval_page``) instead of
+        the plain one, so approval-related information is shown too.
+
+        :param view_arch: current view architecture (``etree`` element)
+        :return: the (possibly modified) view architecture
+        """
         if self._documenso_signing_create_page:
             xml_id = (
                 "ssi_connector_documenso_signing" ".documenso_signing_approval_page"
@@ -69,6 +78,13 @@ class MixinDocumensoSigningApproval(models.AbstractModel):
     # ------------------------------------------------------------------
 
     def _compute_approved_rejected(self):
+        """Derive ``approved``/``rejected`` from the Documenso request.
+
+        When Documenso-based approval is active, ``approved`` mirrors
+        ``approval_signature_request_id.state == 'signed'`` and
+        ``rejected`` mirrors the record already being in the rejection
+        state. Otherwise, falls back to the standard computation.
+        """
         for rec in self:
             if rec._use_documenso_approval() and rec.approval_signature_request_id:
                 rec.approved = rec.approval_signature_request_id.state == "signed"
@@ -145,6 +161,15 @@ class MixinDocumensoSigningApproval(models.AbstractModel):
     # ------------------------------------------------------------------
 
     def write(self, vals):
+        """Cancel the linked signature request when reset to the from-state.
+
+        When ``vals`` moves the record back to ``_approval_from_state``,
+        any pending/sent ``approval_signature_request_id`` is cancelled
+        and the reference is cleared in the same call.
+
+        :param vals: values passed to the standard ``write()``
+        :return: the result of the overridden ``write()``
+        """
         if vals.get(self._approval_state_field) == self._approval_from_state:
             # Cancel the linked signature request before it is dereferenced.
             for rec in self:
@@ -163,6 +188,10 @@ class MixinDocumensoSigningApproval(models.AbstractModel):
     # ------------------------------------------------------------------
 
     def unlink(self):
+        """Cancel pending signature requests before deleting the record.
+
+        :return: the result of the overridden ``unlink()``
+        """
         for rec in self:
             if (
                 rec.approval_signature_request_id
@@ -176,6 +205,10 @@ class MixinDocumensoSigningApproval(models.AbstractModel):
     # ------------------------------------------------------------------
 
     def _prepare_approve_action_notification(self):
+        """Build the message announcing a Documenso-driven approval.
+
+        :return: translated notification string
+        """
         self.ensure_one()
         msg = _("%s %s approved via Documenso signing") % (
             self._description,
@@ -184,6 +217,10 @@ class MixinDocumensoSigningApproval(models.AbstractModel):
         return msg
 
     def _prepare_reject_action_notification(self):
+        """Build the message announcing a Documenso-driven rejection.
+
+        :return: translated notification string
+        """
         self.ensure_one()
         msg = _("%s %s rejected — Documenso signing was cancelled") % (
             self._description,
