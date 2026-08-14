@@ -19,6 +19,7 @@
         "ssi_localdict_mixin",
         "ssi_master_data_mixin",
         "ssi_multiple_approval_mixin",
+        "web_tour",
     ],
     "external_dependencies": {
         "python": [
@@ -31,6 +32,7 @@
         "security/ir_model_access/create_documenso_signature_request.xml",
         "data/ir_cron.xml",
         "templates/signing_request_templates.xml",
+        "views/assets.xml",
         "views/documenso_signing_template_views.xml",
         "views/documenso_signature_request_views.xml",
         "views/approval_template_views.xml",
