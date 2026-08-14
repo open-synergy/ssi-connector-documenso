@@ -73,11 +73,17 @@ class MixinDocumensoSigning(models.AbstractModel):
         }
 
     def action_create_signing_request(self):
+        """Open the wizard that starts a new Documenso signature request.
+
+        :return: an ``ir.actions.act_window`` dict opening the
+            ``create_documenso_signature_request`` wizard, prefilled
+            with this record as its source
+        """
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
             "name": _("Create Signing Request"),
-            "res_model": "documenso.create.signing.wizard",
+            "res_model": "create_documenso_signature_request",
             "view_mode": "form",
             "target": "new",
             "context": {

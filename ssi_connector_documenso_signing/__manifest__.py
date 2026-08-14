@@ -26,14 +26,16 @@
         ]
     },
     "data": [
+        "security/res_groups.xml",
         "security/ir.model.access.csv",
+        "security/ir_model_access/create_documenso_signature_request.xml",
         "data/ir_cron.xml",
         "templates/signing_request_templates.xml",
-        "views/documenso_create_signing_wizard_views.xml",
         "views/documenso_signing_template_views.xml",
         "views/documenso_signature_request_views.xml",
         "views/approval_template_views.xml",
         "views/menu.xml",
+        "wizards/create_documenso_signature_request.xml",
     ],
     "installable": True,
 }
