@@ -6,6 +6,13 @@ from odoo import fields, models
 
 
 class ApprovalTemplate(models.Model):
+    """Add an optional Documenso signing template to approval templates.
+
+    When ``documenso_signing_template_id`` is set, the approval flow for
+    documents using this template is driven by a Documenso signature
+    request instead of the standard approval-record flow.
+    """
+
     _name = "approval.template"
     _inherit = "approval.template"
 

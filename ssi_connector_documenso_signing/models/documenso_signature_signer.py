@@ -20,6 +20,8 @@ from odoo import api, fields, models
 
 
 class DocumensoSignatureSigner(models.Model):
+    """Represent one signer line within a ``documenso.signature.request``."""
+
     _name = "documenso.signature.signer"
     _description = "Documenso Signature Signer"
     _order = "signing_order, id"
@@ -99,7 +101,11 @@ class DocumensoSignatureSigner(models.Model):
     )
 
     @api.onchange("partner_id")
-    def _onchange_partner_id(self):
-        """Auto-suggest a signature anchor based on the partner."""
+    def onchange_signature_anchor(self):
+        """Auto-suggest a signature anchor based on the partner.
+
+        Only fills ``signature_anchor`` when it is still empty, so an
+        anchor set manually by the user is never overwritten.
+        """
         if self.partner_id and not self.signature_anchor:
             self.signature_anchor = "{{{{SIGN_{}}}}}".format(self.partner_id.id)

@@ -35,6 +35,13 @@ _logger = logging.getLogger(__name__)
 
 
 class DocumensoSignatureRequest(models.Model):
+    """Track a single signature request sent to Documenso.
+
+    Links a source Odoo record (``res_model`` / ``res_id``) to a generated
+    PDF and its signers, and follows the request through the Documenso
+    signing lifecycle (draft → sent → signed / cancelled).
+    """
+
     _name = "documenso.signature.request"
     _description = "Documenso Signature Request"
     _inherit = ["mail.thread", "mail.activity.mixin"]
@@ -155,6 +162,11 @@ class DocumensoSignatureRequest(models.Model):
 
     @api.depends("res_model")
     def _compute_allowed_py3o_report_ids(self):
+        """Restrict selectable py3o reports to the current source model.
+
+        Only ``report_py3o`` actions with PDF output are offered; when
+        ``res_model`` is not yet set, all such reports are allowed.
+        """
         Report = self.env["ir.actions.report"]
         for rec in self:
             criteria = [
@@ -166,16 +178,27 @@ class DocumensoSignatureRequest(models.Model):
             rec.allowed_py3o_report_ids = Report.search(criteria)
 
     @api.onchange("signing_template_id")
-    def _onchange_signing_template_id(self):
-        template = self.signing_template_id
-        if not template:
-            return
-        self.res_model = template.res_model
-        self.py3o_report_id = template.py3o_report_id
-        self._apply_template_signers()
+    def onchange_res_model(self):
+        self.res_model = False
+        if self.signing_template_id:
+            self.res_model = self.signing_template_id.res_model
 
-    @api.onchange("res_id")
-    def _onchange_res_id(self):
+    @api.onchange("signing_template_id", "res_model")
+    def onchange_py3o_report_id(self):
+        self.py3o_report_id = False
+        if self.signing_template_id and self.res_model:
+            self.py3o_report_id = self.signing_template_id.py3o_report_id
+
+    @api.onchange("signing_template_id", "res_id")
+    def onchange_signer_ids(self):
+        """Refresh ``signer_ids`` from the selected signing template.
+
+        Clears the existing signer lines first, then rebuilds them via
+        ``_apply_template_signers()`` when both ``signing_template_id``
+        and ``res_id`` are set. As a result, clearing the template also
+        clears any signer lines it had populated.
+        """
+        self.signer_ids = [(5, 0, 0)]
         if self.signing_template_id and self.res_id:
             self._apply_template_signers()
 
@@ -240,12 +263,13 @@ class DocumensoSignatureRequest(models.Model):
             )
         self.signer_ids = new_signers
 
-    @api.onchange("res_model")
-    def _onchange_res_model(self):
-        self.py3o_report_id = False
-
     @api.depends("res_model", "res_id")
     def _compute_res_name(self):
+        """Resolve the display name of the source document.
+
+        Falls back to ``"<res_model>,<res_id>"`` when the source record
+        can no longer be read (e.g. it was deleted).
+        """
         for rec in self:
             if rec.res_model and rec.res_id:
                 try:
@@ -258,10 +282,12 @@ class DocumensoSignatureRequest(models.Model):
 
     @api.depends("signer_ids")
     def _compute_signer_count(self):
+        """Count the signer lines attached to the request."""
         for rec in self:
             rec.signer_count = len(rec.signer_ids)
 
     def name_get(self):
+        """Build a display name combining source, backend, and state."""
         result = []
         for rec in self:
             name = "{} - {} ({})".format(

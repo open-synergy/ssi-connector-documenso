@@ -8,6 +8,14 @@ from odoo.addons.ssi_decorator import ssi_decorator
 
 
 class MixinDocumensoSigning(models.AbstractModel):
+    """Add Documenso signature request tracking to a document model.
+
+    Inheriting models get a ``signature_request_ids`` one2many keyed on
+    ``res_model``/``res_id``, an optional "Documenso Signing" form page,
+    and an action/button to open a wizard that creates a new signature
+    request for the record.
+    """
+
     _name = "mixin.documenso_signing"
     _inherit = [
         "mixin.decorator",
@@ -35,6 +43,7 @@ class MixinDocumensoSigning(models.AbstractModel):
         "signature_request_ids",
     )
     def _compute_signature_request_count(self):
+        """Count signature requests whose source points to this record."""
         for record in self:
             criteria = [
                 ("res_model", "=", self._name),
@@ -46,6 +55,15 @@ class MixinDocumensoSigning(models.AbstractModel):
 
     @ssi_decorator.insert_on_form_view()
     def _documenso_signing_insert_form_element(self, view_arch):
+        """Insert the "Documenso Signing" page into the form view.
+
+        Runs when the form view is built. Only inserts the page when
+        ``_documenso_signing_create_page`` is enabled on the inheriting
+        model; otherwise the view is returned unchanged.
+
+        :param view_arch: current view architecture (``etree`` element)
+        :return: the (possibly modified) view architecture
+        """
         if self._documenso_signing_create_page:
             view_arch = self._add_view_element(
                 view_arch=view_arch,
@@ -56,6 +74,11 @@ class MixinDocumensoSigning(models.AbstractModel):
         return view_arch
 
     def action_open_signature_requests(self):
+        """Open the list of signature requests linked to this record.
+
+        :return: an ``ir.actions.act_window`` dict for
+            ``documenso.signature.request``, filtered to this record
+        """
         self.ensure_one()
         return {
             "name": _("Signature Requests"),

@@ -6,6 +6,13 @@ from odoo import api, fields, models
 
 
 class DocumensoSigningTemplate(models.Model):
+    """Reusable template for creating Documenso signature requests.
+
+    Stores the source model, the py3o report used to generate the PDF,
+    and the list of signer templates whose ``partner_code`` is evaluated
+    against the source document to auto-fill ``signer_ids``.
+    """
+
     _name = "documenso.signing.template"
     _description = "Documenso Signing Template"
     _inherit = ["mixin.master_data", "mixin.localdict"]
@@ -38,6 +45,11 @@ class DocumensoSigningTemplate(models.Model):
 
     @api.depends("res_model")
     def _compute_allowed_py3o_report_ids(self):
+        """Restrict selectable py3o reports to the template's source model.
+
+        Only ``report_py3o`` actions with PDF output are offered; when
+        ``res_model`` is not yet set, all such reports are allowed.
+        """
         Report = self.env["ir.actions.report"]
         for rec in self:
             criteria = [
@@ -49,5 +61,5 @@ class DocumensoSigningTemplate(models.Model):
             rec.allowed_py3o_report_ids = Report.search(criteria)
 
     @api.onchange("res_model")
-    def _onchange_res_model(self):
+    def onchange_py3o_report_id(self):
         self.py3o_report_id = False
