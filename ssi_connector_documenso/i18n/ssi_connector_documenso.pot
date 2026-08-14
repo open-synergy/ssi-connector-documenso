@@ -45,6 +45,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_form
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_search
 msgid "Archived"
 msgstr ""
 
@@ -124,6 +125,7 @@ msgstr ""
 
 #. module: ssi_connector_documenso
 #: model:ir.actions.act_window,name:ssi_connector_documenso.action_documenso_backend
+#: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_search
 #: model_terms:ir.ui.view,arch_db:ssi_connector_documenso.view_documenso_backend_tree
 msgid "Documenso Backends"
 msgstr ""
