@@ -5,9 +5,14 @@
 from odoo import _, fields, models
 
 
-class DocumensoCreateSigningWizard(models.TransientModel):
-    _name = "documenso.create.signing.wizard"
-    _description = "Create Documenso Signature Request Wizard"
+class CreateDocumensoSignatureRequest(models.TransientModel):
+    """
+    Collects the signing template and Documenso backend needed to
+    start a new ``documenso.signature.request`` for a source document.
+    """
+
+    _name = "create_documenso_signature_request"
+    _description = "Create Documenso Signature Request"
 
     res_model = fields.Char(
         string="Source Model",
@@ -35,6 +40,15 @@ class DocumensoCreateSigningWizard(models.TransientModel):
     )
 
     def action_confirm(self):
+        """Create the signature request and open the resulting record.
+
+        Side effect: creates a ``documenso.signature.request`` for
+        ``res_model``/``res_id`` and applies the selected template's
+        signers to it.
+
+        :return: an ``ir.actions.act_window`` dict opening the newly
+            created ``documenso.signature.request``
+        """
         self.ensure_one()
         template = self.signing_template_id
         request = self.env["documenso.signature.request"].create(

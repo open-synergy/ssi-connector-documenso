@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="documenso_signature_request_user_group" model="res.groups">
+        <field name="name">Signature Request User</field>
+        <field name="category_id" ref="ssi_connector.connector_module_category" />
+    </record>
+
+    <!-- Keep today's access unchanged: every internal user still gets the
+         new group, so the wizard ACL below does not lock anyone out. -->
+    <record id="base.group_user" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('documenso_signature_request_user_group'))]"
+        />
+    </record>
+</odoo>

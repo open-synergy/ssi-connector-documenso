@@ -7,4 +7,3 @@ access_documenso_signing_template_manager,documenso.signing.template manager,mod
 access_documenso_signing_template_user,documenso.signing.template user,model_documenso_signing_template,base.group_user,1,0,0,0
 access_documenso_signing_template_signer_manager,documenso.signing.template.signer manager,model_documenso_signing_template_signer,connector.group_connector_manager,1,1,1,1
 access_documenso_signing_template_signer_user,documenso.signing.template.signer user,model_documenso_signing_template_signer,base.group_user,1,0,0,0
-access_documenso_create_signing_wizard_user,documenso.create.signing.wizard user,model_documenso_create_signing_wizard,base.group_user,1,1,1,1
