@@ -298,6 +298,11 @@ msgid "Documenso Signing Template"
 msgstr ""
 
 #. module: ssi_connector_documenso_signing
+#: model:res.groups,name:ssi_connector_documenso_signing.documenso_signing_template_group
+msgid "Documenso Signing Template Configurator"
+msgstr ""
+
+#. module: ssi_connector_documenso_signing
 #: model:ir.model,name:ssi_connector_documenso_signing.model_documenso_signing_template_signer
 msgid "Documenso Signing Template Signer"
 msgstr ""
