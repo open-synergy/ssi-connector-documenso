@@ -34,7 +34,7 @@
                                 name="base_url"
                                 placeholder="https://app.documenso.com"
                             />
-                            <field name="api_key" password="True" />
+                            <field name="api_key" password="True" required="1" />
                             <field name="version" />
                         </group>
                         <group string="General">

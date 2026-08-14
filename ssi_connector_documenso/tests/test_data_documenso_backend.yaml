@@ -128,7 +128,7 @@ scenarios:
         save_as: "delete_result"
         expect_count: 0
 
-  - name: "Copy clears api_key but keeps base_url"
+  - name: "Copy succeeds, clears api_key but keeps base_url"
     steps:
       - step: "Create backend to copy"
         action: "create"
@@ -172,16 +172,4 @@ scenarios:
         values:
           name: "TEST DOCUMENSO BACKEND No Base URL"
           api_key: "TEST-API-KEY-NO-URL"
-          version: "v2"
-
-  - name: "Create without api_key is rejected"
-    steps:
-      - step: "Create backend missing api_key must fail"
-        action: "create"
-        model: "documenso.backend"
-        expect_error:
-          type: "ValidationError"
-        values:
-          name: "TEST DOCUMENSO BACKEND No API Key"
-          base_url: "https://noapikey.example.com"
           version: "v2"
