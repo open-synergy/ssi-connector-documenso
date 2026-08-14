@@ -1,0 +1,234 @@
+setup:
+  steps:
+    - step: "Create backend"
+      action: "create"
+      model: "documenso.backend"
+      save_as: "backend"
+      values:
+        name: "Test Signature Request Backend"
+        base_url: "https://example.com"
+        api_key: "TEST-API-KEY"
+        version: "v2"
+        active: true
+    - step: "Create source partner"
+      action: "create"
+      model: "res.partner"
+      save_as: "partner"
+      values:
+        name: "Test Signature Request Source Partner"
+    - step: "Create py3o report for res.partner"
+      action: "create"
+      model: "ir.actions.report"
+      save_as: "report"
+      values:
+        name: "Test Signature Request Py3o Report"
+        model: "res.partner"
+        report_type: "py3o"
+        report_name: "test_signature_request_py3o_report"
+        py3o_filetype: "pdf"
+    - step: "Create signer partner"
+      action: "create"
+      model: "res.partner"
+      save_as: "signer_partner"
+      values:
+        name: "Test Signature Request Signer Partner"
+        email: "test.signature.request.signer@example.com"
+
+scenarios:
+  - name: "Compute allowed_py3o_report_ids matches res_model"
+    steps:
+      - step: "Create request matching res_model"
+        action: "create"
+        model: "documenso.signature.request"
+        save_as: "request"
+        values:
+          backend_id: "REC: backend.id"
+          res_model: "res.partner"
+          res_id: "REC: partner.id"
+          py3o_report_id: "REC: report.id"
+      - step: "Assert report is allowed"
+        action: "assert"
+        target: "request"
+        asserts:
+          allowed_py3o_report_ids:
+            type: "o2m"
+            check: "contains"
+            expected_records:
+              - "REC: report"
+
+  - name: "Compute allowed_py3o_report_ids no match for res_model"
+    steps:
+      - step: "Create request with unrelated res_model"
+        action: "create"
+        model: "documenso.signature.request"
+        save_as: "request"
+        values:
+          backend_id: "REC: backend.id"
+          res_model: "test.documenso.signature.request.no.match.xyz"
+          res_id: "REC: partner.id"
+          py3o_report_id: "REC: report.id"
+      - step: "Assert no report allowed"
+        action: "assert"
+        target: "request"
+        asserts:
+          allowed_py3o_report_ids:
+            type: "o2m"
+            check: "count"
+            expected_count: 0
+
+  - name: "Compute res_name points to existing source record"
+    steps:
+      - step: "Create request pointing to source partner"
+        action: "create"
+        model: "documenso.signature.request"
+        save_as: "request"
+        values:
+          backend_id: "REC: backend.id"
+          res_model: "res.partner"
+          res_id: "REC: partner.id"
+          py3o_report_id: "REC: report.id"
+      - step: "Assert res_name is the partner display name"
+        action: "assert"
+        target: "request"
+        asserts:
+          res_name:
+            type: "value"
+            expected: "REC: partner.display_name"
+
+  - name: "Compute res_name empty when res_model/res_id are not set"
+    steps:
+      - step: "Open new form without res_model/res_id"
+        action: "form"
+        model: "documenso.signature.request"
+        save: false
+        asserts:
+          res_name:
+            type: "value"
+            operator: "is_falsy"
+
+  - name: "Compute signer_count normal and empty"
+    steps:
+      - step: "Create request without signers"
+        action: "create"
+        model: "documenso.signature.request"
+        save_as: "request_no_signer"
+        values:
+          backend_id: "REC: backend.id"
+          res_model: "res.partner"
+          res_id: "REC: partner.id"
+          py3o_report_id: "REC: report.id"
+      - step: "Assert signer_count zero"
+        action: "assert"
+        target: "request_no_signer"
+        asserts:
+          signer_count:
+            type: "value"
+            expected: 0
+      - step: "Create request with one signer"
+        action: "create"
+        model: "documenso.signature.request"
+        save_as: "request_with_signer"
+        values:
+          backend_id: "REC: backend.id"
+          res_model: "res.partner"
+          res_id: "REC: partner.id"
+          py3o_report_id: "REC: report.id"
+          signer_ids:
+            - - 0
+              - 0
+              - partner_id: "REC: signer_partner.id"
+                role: "SIGNER"
+      - step: "Assert signer_count one"
+        action: "assert"
+        target: "request_with_signer"
+        asserts:
+          signer_count:
+            type: "value"
+            expected: 1
+
+  - name: "Onchange signing_template_id fills and clearing empties"
+    steps:
+      - step: "Create signing template with signer template"
+        action: "create"
+        model: "documenso.signing.template"
+        save_as: "onchange_template"
+        values:
+          name: "Test Request Onchange Template"
+          code: "DSR-ONCHANGE-TPL-001"
+          res_model: "res.partner"
+          py3o_report_id: "REC: report.id"
+          signer_template_ids:
+            - - 0
+              - 0
+              - role: "SIGNER"
+                signing_order: 1
+                partner_code: "document"
+      - step: "Open form, set res_id then signing_template_id"
+        action: "form"
+        model: "documenso.signature.request"
+        save: false
+        ops:
+          - set: {res_id: "REC: partner.id"}
+          - set: {signing_template_id: "REC: onchange_template"}
+          - assert:
+              res_model:
+                type: "value"
+                expected: "res.partner"
+          - assert:
+              py3o_report_id:
+                type: "m2o"
+                expected: "REC: report"
+          - assert:
+              signer_ids:
+                type: "o2m"
+                check: "count"
+                expected_count: 1
+          - set: {signing_template_id: false}
+          - assert:
+              res_model:
+                type: "value"
+                operator: "is_falsy"
+          - assert:
+              py3o_report_id:
+                type: "value"
+                operator: "is_falsy"
+          - assert:
+              signer_ids:
+                type: "o2m"
+                check: "count"
+                expected_count: 0
+
+  - name: "action_cancel and action_reset_to_draft transitions"
+    steps:
+      - step: "Create request in draft"
+        action: "create"
+        model: "documenso.signature.request"
+        save_as: "request"
+        values:
+          backend_id: "REC: backend.id"
+          res_model: "res.partner"
+          res_id: "REC: partner.id"
+          py3o_report_id: "REC: report.id"
+      - step: "Assert initial state draft"
+        action: "assert"
+        target: "request"
+        asserts:
+          state:
+            type: "value"
+            expected: "draft"
+      - step: "Call action_cancel"
+        action: "call"
+        target: "request"
+        method: "action_cancel"
+        asserts:
+          state:
+            type: "value"
+            expected: "cancelled"
+      - step: "Call action_reset_to_draft"
+        action: "call"
+        target: "request"
+        method: "action_reset_to_draft"
+        asserts:
+          state:
+            type: "value"
+            expected: "draft"

@@ -1,0 +1,75 @@
+setup:
+  steps:
+    - step: "Create backend"
+      action: "create"
+      model: "documenso.backend"
+      save_as: "backend"
+      values:
+        name: "Test Signer Backend"
+        base_url: "https://example.com"
+        api_key: "TEST-API-KEY"
+        version: "v2"
+        active: true
+    - step: "Create source partner"
+      action: "create"
+      model: "res.partner"
+      save_as: "source_partner"
+      values:
+        name: "Test Signer Source Partner"
+    - step: "Create py3o report"
+      action: "create"
+      model: "ir.actions.report"
+      save_as: "report"
+      values:
+        name: "Test Signer Py3o Report"
+        model: "res.partner"
+        report_type: "py3o"
+        report_name: "test_signer_py3o_report"
+        py3o_filetype: "pdf"
+    - step: "Create signature request"
+      action: "create"
+      model: "documenso.signature.request"
+      save_as: "request"
+      values:
+        backend_id: "REC: backend.id"
+        res_model: "res.partner"
+        res_id: "REC: source_partner.id"
+        py3o_report_id: "REC: report.id"
+    - step: "Create signer partner"
+      action: "create"
+      model: "res.partner"
+      save_as: "signer_partner"
+      values:
+        name: "Test Signer Partner"
+        email: "test.signer.partner@example.com"
+
+scenarios:
+  - name: "Onchange partner_id auto-fills empty signature_anchor"
+    steps:
+      - step: "Fill form and check auto-generated anchor"
+        action: "form"
+        model: "documenso.signature.signer"
+        save: false
+        ops:
+          - set: {request_id: "REC: request"}
+          - set: {partner_id: "REC: signer_partner"}
+          - assert:
+              signature_anchor:
+                type: "value"
+                operator: "contains"
+                expected: "SIGN_"
+
+  - name: "Onchange partner_id keeps a manually-set signature_anchor"
+    steps:
+      - step: "Fill form with a manual anchor then set partner_id"
+        action: "form"
+        model: "documenso.signature.signer"
+        save: false
+        ops:
+          - set: {request_id: "REC: request"}
+          - set: {signature_anchor: "{{CUSTOM_ANCHOR}}"}
+          - set: {partner_id: "REC: signer_partner"}
+          - assert:
+              signature_anchor:
+                type: "value"
+                expected: "{{CUSTOM_ANCHOR}}"

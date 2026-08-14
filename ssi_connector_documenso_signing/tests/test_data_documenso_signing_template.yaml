@@ -1,0 +1,192 @@
+scenarios:
+  - name: "Create documenso.signing.template"
+    steps:
+      - step: "Create template"
+        action: "create"
+        model: "documenso.signing.template"
+        save_as: "template"
+        values:
+          name: "Test Signing Template Create"
+          code: "DST-TPL-CREATE-001"
+          res_model: "res.partner"
+      - step: "Assert created"
+        action: "assert"
+        target: "template"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Signing Template Create"
+          res_model:
+            type: "value"
+            expected: "res.partner"
+
+  - name: "Write documenso.signing.template name"
+    steps:
+      - step: "Create template"
+        action: "create"
+        model: "documenso.signing.template"
+        save_as: "template"
+        values:
+          name: "Test Signing Template Write Before"
+          code: "DST-TPL-WRITE-001"
+          res_model: "res.partner"
+      - step: "Update name"
+        action: "write"
+        target: "template"
+        values:
+          name: "Test Signing Template Write After"
+      - step: "Assert name updated"
+        action: "assert"
+        target: "template"
+        asserts:
+          name:
+            type: "value"
+            expected: "Test Signing Template Write After"
+
+  - name: "Archive and restore documenso.signing.template"
+    steps:
+      - step: "Create template"
+        action: "create"
+        model: "documenso.signing.template"
+        save_as: "template"
+        values:
+          name: "Test Signing Template Archive"
+          code: "DST-TPL-ARCHIVE-001"
+          res_model: "res.partner"
+      - step: "Archive template"
+        action: "write"
+        target: "template"
+        values:
+          active: false
+      - step: "Assert archived"
+        action: "assert"
+        target: "template"
+        asserts:
+          active:
+            type: "value"
+            operator: "is_falsy"
+      - step: "Restore template"
+        action: "write"
+        target: "template"
+        values:
+          active: true
+      - step: "Assert restored"
+        action: "assert"
+        target: "template"
+        asserts:
+          active:
+            type: "value"
+            operator: "is_truthy"
+
+  - name: "Delete documenso.signing.template"
+    steps:
+      - step: "Create template"
+        action: "create"
+        model: "documenso.signing.template"
+        save_as: "template"
+        values:
+          name: "Test Signing Template Delete"
+          code: "DST-TPL-DELETE-001"
+          res_model: "res.partner"
+      - step: "Delete template"
+        action: "unlink"
+        target: "template"
+      - step: "Verify deleted"
+        action: "search"
+        model: "documenso.signing.template"
+        domain: [["code", "=", "DST-TPL-DELETE-001"]]
+        save_as: "result"
+        expect_count: 0
+
+  - name: "Compute allowed_py3o_report_ids matches res_model"
+    steps:
+      - step: "Create py3o report for res.partner"
+        action: "create"
+        model: "ir.actions.report"
+        save_as: "report"
+        values:
+          name: "Test Template Py3o Report Match"
+          model: "res.partner"
+          report_type: "py3o"
+          report_name: "test_template_py3o_report_match"
+          py3o_filetype: "pdf"
+      - step: "Create template matching res_model"
+        action: "create"
+        model: "documenso.signing.template"
+        save_as: "template"
+        values:
+          name: "Test Signing Template Compute Match"
+          code: "DST-TPL-COMPUTE-MATCH-001"
+          res_model: "res.partner"
+      - step: "Assert report is allowed"
+        action: "assert"
+        target: "template"
+        asserts:
+          allowed_py3o_report_ids:
+            type: "o2m"
+            check: "contains"
+            expected_records:
+              - "REC: report"
+
+  - name: "Compute allowed_py3o_report_ids no match for res_model"
+    steps:
+      - step: "Create py3o report for res.partner"
+        action: "create"
+        model: "ir.actions.report"
+        save_as: "report"
+        values:
+          name: "Test Template Py3o Report No Match"
+          model: "res.partner"
+          report_type: "py3o"
+          report_name: "test_template_py3o_report_no_match"
+          py3o_filetype: "pdf"
+      - step: "Create template with unrelated res_model"
+        action: "create"
+        model: "documenso.signing.template"
+        save_as: "template"
+        values:
+          name: "Test Signing Template Compute No Match"
+          code: "DST-TPL-COMPUTE-NOMATCH-001"
+          res_model: "test.documenso.signing.no.match.xyz"
+      - step: "Assert no report allowed"
+        action: "assert"
+        target: "template"
+        asserts:
+          allowed_py3o_report_ids:
+            type: "o2m"
+            check: "count"
+            expected_count: 0
+
+  - name: "Onchange res_model clears py3o_report_id"
+    steps:
+      - step: "Create py3o report for res.partner"
+        action: "create"
+        model: "ir.actions.report"
+        save_as: "report"
+        values:
+          name: "Test Template Py3o Report Onchange"
+          model: "res.partner"
+          report_type: "py3o"
+          report_name: "test_template_py3o_report_onchange"
+          py3o_filetype: "pdf"
+      - step: "Fill form then change res_model to clear py3o_report_id"
+        action: "form"
+        model: "documenso.signing.template"
+        save: false
+        ops:
+          - set: {name: "Test Signing Template Onchange"}
+          - set: {code: "DST-TPL-ONCHANGE-001"}
+          - set: {res_model: "res.partner"}
+          - set: {py3o_report_id: "REC: report"}
+          - assert:
+              py3o_report_id:
+                type: "value"
+                operator: "is_truthy"
+          - set: {res_model: "res.company"}
+          - assert:
+              py3o_report_id:
+                type: "value"
+                operator: "is_falsy"
