@@ -41,8 +41,10 @@ class DocumensoBackend(models.Model):
     )
     api_key = fields.Char(
         string="API Key",
-        required=True,
-        help="API token generated from your Documenso account settings.",
+        help="API token generated from your Documenso account settings. "
+        "Not required at the ORM level so that copy() can clear it "
+        "without violating a NOT NULL constraint; the form view still "
+        "marks it required for manual create/edit through the UI.",
     )
     version = fields.Selection(
         selection=[("v1", "API v1"), ("v2", "API v2")],
