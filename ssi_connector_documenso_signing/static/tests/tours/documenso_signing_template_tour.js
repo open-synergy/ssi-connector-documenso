@@ -171,8 +171,23 @@ odoo.define(
                         trigger: ".o_field_x2many .o_field_x2many_list_row_add a",
                     },
                     {
+                        // The Partner Python Code field (widget="ace") lazy-
+                        // loads /web/static/lib/ace/ace.js the first time it
+                        // starts (AceEditor.jsLibs), and Odoo only inserts a
+                        // widget's markup into the DOM once its whole
+                        // willStart()/start() chain resolves -- so the WHOLE
+                        // dialog, not just this field, stays absent from the
+                        // DOM until that download finishes. In CI that can
+                        // take longer than the tour's 10000ms default step
+                        // timeout even though nothing is actually stuck
+                        // (confirmed on PR #21: the failure screenshot,
+                        // captured at the default timeout, already showed the
+                        // ace editor fully rendered). Raise only this gate;
+                        // once it passes, ace.js is already loaded and the
+                        // remaining steps in the dialog are fast.
                         content: "Signer template dialog is open",
                         trigger: ".modal .o_field_widget[name='partner_code']",
+                        timeout: 30000,
                         run: function () {
                             // Assertion only.
                         },
@@ -309,8 +324,12 @@ odoo.define(
                             ".o_field_x2many[name='signer_template_ids'] .o_data_row:first .o_data_cell:first",
                     },
                     {
+                        // Same ace.js lazy-load gate as the create tour above
+                        // -- raise the timeout, not the selector (PR #21 CI
+                        // failure analysis).
                         content: "Signer template dialog is open",
                         trigger: ".modal .o_field_widget[name='partner_code']",
+                        timeout: 30000,
                         run: function () {
                             // Assertion only.
                         },
