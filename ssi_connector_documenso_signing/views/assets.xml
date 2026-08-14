@@ -13,6 +13,10 @@
                 type="text/javascript"
                 src="/ssi_connector_documenso_signing/static/tests/tours/documenso_signature_request_tour.js"
             />
+        <script
+                type="text/javascript"
+                src="/ssi_connector_documenso_signing/static/tests/tours/documenso_signing_template_tour.js"
+            />
     </xpath>
 </template>
 </odoo>

@@ -15,6 +15,11 @@ Work Instruction
 * `Check Status — Documenso Signature Request <docs/documenso_signature_request/index.html>`_
 * `Cancel Documenso Signature Request <docs/documenso_signature_request/index.html>`_
 * `Reset to Draft — Documenso Signature Request <docs/documenso_signature_request/index.html>`_
+* `Create Documenso Signing Template <docs/documenso_signing_template/index.html>`_
+* `Edit Documenso Signing Template <docs/documenso_signing_template/index.html>`_
+* `Delete Documenso Signing Template <docs/documenso_signing_template/index.html>`_
+* `Deactivate Documenso Signing Template <docs/documenso_signing_template/index.html>`_
+* `Activate Documenso Signing Template <docs/documenso_signing_template/index.html>`_
 
 
 Installation
