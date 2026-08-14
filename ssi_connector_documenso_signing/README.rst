@@ -7,6 +7,16 @@ Documenso Connector - Signing
 =============================
 
 
+Work Instruction
+================
+
+* `Create Documenso Signature Request <docs/documenso_signature_request/index.html>`_
+* `Send to Documenso — Documenso Signature Request <docs/documenso_signature_request/index.html>`_
+* `Check Status — Documenso Signature Request <docs/documenso_signature_request/index.html>`_
+* `Cancel Documenso Signature Request <docs/documenso_signature_request/index.html>`_
+* `Reset to Draft — Documenso Signature Request <docs/documenso_signature_request/index.html>`_
+
+
 Installation
 ============
 
