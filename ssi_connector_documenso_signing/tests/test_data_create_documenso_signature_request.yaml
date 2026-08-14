@@ -1,0 +1,62 @@
+scenarios:
+  - name: "Wizard creates signature request from template"
+    steps:
+      - step: "Create backend"
+        action: "create"
+        model: "documenso.backend"
+        save_as: "backend"
+        values:
+          name: "Test Wizard Backend"
+          base_url: "https://example.com"
+          api_key: "TEST-API-KEY"
+          version: "v2"
+          active: true
+      - step: "Create source partner"
+        action: "create"
+        model: "res.partner"
+        save_as: "partner"
+        values:
+          name: "Test Wizard Source Partner"
+      - step: "Create py3o report"
+        action: "create"
+        model: "ir.actions.report"
+        save_as: "report"
+        values:
+          name: "Test Wizard Py3o Report"
+          model: "res.partner"
+          report_type: "py3o"
+          report_name: "test_wizard_py3o_report"
+          py3o_filetype: "pdf"
+      - step: "Create signing template"
+        action: "create"
+        model: "documenso.signing.template"
+        save_as: "template"
+        values:
+          name: "Test Wizard Signing Template"
+          code: "DSR-WIZARD-TPL-001"
+          res_model: "res.partner"
+          py3o_report_id: "REC: report.id"
+          signer_template_ids:
+            - - 0
+              - 0
+              - role: "SIGNER"
+                signing_order: 1
+                partner_code: "document"
+      - step: "Run wizard to create the signature request"
+        action: "wizard"
+        model: "create_documenso_signature_request"
+        target: "partner"
+        values:
+          res_model: "res.partner"
+          res_id: "REC: partner.id"
+          signing_template_id: "REC: template.id"
+          backend_id: "REC: backend.id"
+        method: "action_confirm"
+      - step: "Verify the signature request was created"
+        action: "search"
+        model: "documenso.signature.request"
+        domain:
+          - ["signing_template_id", "=", "REC: template.id"]
+          - ["res_id", "=", "REC: partner.id"]
+        save_as: "created_requests"
+        expect_count: 1

@@ -1,0 +1,56 @@
+scenarios:
+  - name: "Compute signature_request_count normal and empty"
+    steps:
+      - step: "Create host document"
+        action: "create"
+        model: "test.documenso_signing"
+        save_as: "host"
+        values:
+          name: "Test Documenso Signing Host"
+      - step: "Assert count zero without any request"
+        action: "assert"
+        target: "host"
+        asserts:
+          signature_request_count:
+            type: "value"
+            expected: 0
+      - step: "Create backend"
+        action: "create"
+        model: "documenso.backend"
+        save_as: "backend"
+        values:
+          name: "Test Mixin Backend"
+          base_url: "https://example.com"
+          api_key: "TEST-API-KEY"
+          version: "v2"
+          active: true
+      - step: "Create py3o report"
+        action: "create"
+        model: "ir.actions.report"
+        save_as: "report"
+        values:
+          name: "Test Mixin Py3o Report"
+          model: "test.documenso_signing"
+          report_type: "py3o"
+          report_name: "test_mixin_py3o_report"
+          py3o_filetype: "pdf"
+      - step: "Create a signature request pointing at the host"
+        action: "create"
+        model: "documenso.signature.request"
+        save_as: "request"
+        values:
+          backend_id: "REC: backend.id"
+          res_model: "test.documenso_signing"
+          res_id: "REC: host.id"
+          py3o_report_id: "REC: report.id"
+      - step: "Force recompute of signature_request_count"
+        action: "call"
+        target: "host"
+        method: "_compute_signature_request_count"
+      - step: "Assert count incremented after request created"
+        action: "assert"
+        target: "host"
+        asserts:
+          signature_request_count:
+            type: "value"
+            expected: 1

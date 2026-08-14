@@ -1,0 +1,22 @@
+scenarios:
+  - name: "Create test.documenso_signing"
+    steps:
+      - step: "Create fixture record"
+        action: "create"
+        model: "test.documenso_signing"
+        save_as: "record"
+        values:
+          name: "Test Fixture Record"
+      - step: "Assert created with count zero"
+        action: "assert"
+        target: "record"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          name:
+            type: "value"
+            expected: "Test Fixture Record"
+          signature_request_count:
+            type: "value"
+            expected: 0
