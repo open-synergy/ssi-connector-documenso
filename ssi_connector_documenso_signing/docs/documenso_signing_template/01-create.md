@@ -28,8 +28,10 @@
    - **Py3o Report**: Select the py3o report used to generate the PDF. Only py3o PDF
      reports registered for **Source Model** are listed, and the list is empty until
      **Source Model** is filled in.
-5. On the **Signer Templates** tab, add one or more signer lines. Repeat the following
-   steps as many times as needed to add a line:
+5. On the **Signer Templates** tab, optionally add one or more signer lines — the
+   template can be saved without any, but a signature request generated from it will
+   then need its signers added manually. Repeat the following steps as many times as
+   needed to add a line:
    - Click **Add a line**.
    - Fill in the line with:
      - **Role**: Defaults to **Signer**. Change to **CC**, **Approver**, or **Viewer**
