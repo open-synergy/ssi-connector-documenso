@@ -25,7 +25,11 @@ msgstr ""
 
 #. module: ssi_connector_documenso
 #: model:ir.model.fields,help:ssi_connector_documenso.field_documenso_backend__api_key
-msgid "API token generated from your Documenso account settings."
+msgid ""
+"API token generated from your Documenso account settings. Not required at "
+"the ORM level so that copy() can clear it without violating a NOT NULL "
+"constraint; the form view still marks it required for manual create/edit "
+"through the UI."
 msgstr ""
 
 #. module: ssi_connector_documenso
