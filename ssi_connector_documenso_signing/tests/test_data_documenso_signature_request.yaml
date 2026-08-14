@@ -183,7 +183,7 @@ scenarios:
                 type: "o2m"
                 check: "count"
                 expected_count: 1
-          - set: {signing_template_id: false}
+          - set: {signing_template_id: "EVAL: env['documenso.signing.template']"}
           - assert:
               res_model:
                 type: "value"
