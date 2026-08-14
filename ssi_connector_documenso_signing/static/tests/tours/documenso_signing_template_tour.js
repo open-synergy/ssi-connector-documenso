@@ -23,6 +23,24 @@ odoo.define(
         // flattens "Signing Templates" into the same "Documenso" dropdown
         // (odoo-development-ui-test patterns.md §A, same mechanic already used
         // by documenso_signature_request_tour.js for "Signature Requests").
+        //
+        // TIMEOUT NOTE (applies to every dropdown/filter/action-menu step in
+        // this file, not just this block): PR #21 CI failed three times on the
+        // "test with OCB" job (never on "test with Odoo") at different
+        // dropdown/filter/action-menu steps each time -- "Enable the Archived
+        // filter", then "Open the Action menu" on two other tours, then
+        // "Enable the Archived filter" again on a later run
+        // (31768379014) -- while documenso_backend_tour.js's own "Enable the
+        // Archived filter" step (no explicit timeout either) stayed green on
+        // every run. The OCB image (ghcr.io/oca/oca-ci/py3.6-ocb14.0) boots
+        // far more addons than the plain Odoo image, and this file runs SIX
+        // sequential HttpSavepointCase tour sessions against a heavier form
+        // (mixin.master_data: chatter + a custom fields_view_get override) --
+        // so every dropdown/menu render in this file, not one specific step,
+        // is closer to the default 10000ms step timeout here than in lighter
+        // tours. Steps that open a dropdown, filter menu, action menu, or
+        // confirm dialog get an explicit 20000ms below; plain field fills and
+        // button clicks that never failed are left at the default.
         function openDocumensoSigningTemplateList() {
             return [
                 tour.stepUtils.showAppsMenuItem(),
@@ -30,16 +48,19 @@ odoo.define(
                     content: "Open the Connector app",
                     trigger:
                         '.o_app[data-menu-xmlid="ssi_connector.menu_root_connector"]',
+                    timeout: 20000,
                 },
                 {
                     content: "Open the Documenso menu",
                     trigger:
                         '.o_menu_sections [data-menu-xmlid="ssi_connector_documenso.menu_documenso_root"]',
+                    timeout: 20000,
                 },
                 {
                     content: "Open the Signing Templates menu",
                     trigger:
                         '.o_menu_sections [data-menu-xmlid="ssi_connector_documenso_signing.menu_documenso_signing_templates"]',
+                    timeout: 20000,
                 },
                 {
                     // Gate: wait for the TARGET action to be installed, not just
@@ -49,6 +70,7 @@ odoo.define(
                     trigger:
                         ".o_control_panel .breadcrumb-item.active:contains(Signing Templates)",
                     extra_trigger: ".o_list_view",
+                    timeout: 20000,
                     run: function () {
                         // Assertion only; do not trigger the default click
                         // action.
@@ -326,6 +348,7 @@ odoo.define(
                     {
                         content: "Open the Action menu",
                         trigger: ".o_cp_action_menus button:contains(Action)",
+                        timeout: 20000,
                     },
                     {
                         content: "Click Delete",
@@ -334,6 +357,7 @@ odoo.define(
                         // could pick a different item as a substring
                         // (odoo-development-ui-test patterns.md §I).
                         trigger: ".o_cp_action_menus .o_menu_item a",
+                        timeout: 20000,
                         run: function () {
                             var $delete = $(".o_cp_action_menus .o_menu_item a").filter(
                                 function () {
@@ -349,6 +373,7 @@ odoo.define(
                         content: "Confirm deletion",
                         trigger: ".modal-footer button.btn-primary",
                         in_modal: true,
+                        timeout: 20000,
                     },
 
                     // ── Post-Condition — The selected record is permanently
@@ -390,10 +415,12 @@ odoo.define(
                     {
                         content: "Open the Action menu",
                         trigger: ".o_cp_action_menus button:contains(Action)",
+                        timeout: 20000,
                     },
                     {
                         content: "Click Archive",
                         trigger: ".o_cp_action_menus .o_menu_item a",
+                        timeout: 20000,
                         run: function () {
                             var $archive = $(
                                 ".o_cp_action_menus .o_menu_item a"
@@ -409,6 +436,7 @@ odoo.define(
                         content: "Confirm the dialog",
                         trigger: ".modal-footer button.btn-primary",
                         in_modal: true,
+                        timeout: 20000,
                     },
 
                     // ── Post-Condition — The record is archived and no
@@ -446,13 +474,21 @@ odoo.define(
                         // mouse event sequence -- use a real browser click
                         // (odoo-development-ui-test patterns.md §I/§J).
                         trigger: ".o_filter_menu .o_dropdown_toggler_btn",
+                        timeout: 20000,
                         run: function () {
                             this.$anchor[0].click();
                         },
                     },
                     {
+                        // Raised timeout: this exact step failed on the OCB CI
+                        // job on PR #21 (runs 31767181081 and 31768379014)
+                        // while staying green on the Odoo job and in
+                        // documenso_backend_tour.js's own copy of this step --
+                        // see the TIMEOUT NOTE above
+                        // openDocumensoSigningTemplateList().
                         content: "Enable the Archived filter",
                         trigger: ".o_filter_menu .o_menu_item a:contains(Archived)",
+                        timeout: 20000,
                         run: function () {
                             this.$anchor[0].click();
                         },
@@ -477,10 +513,12 @@ odoo.define(
                     {
                         content: "Open the Action menu",
                         trigger: ".o_cp_action_menus button:contains(Action)",
+                        timeout: 20000,
                     },
                     {
                         content: "Click Unarchive",
                         trigger: ".o_cp_action_menus .o_menu_item a",
+                        timeout: 20000,
                         run: function () {
                             var $unarchive = $(
                                 ".o_cp_action_menus .o_menu_item a"
