@@ -3,3 +3,4 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import test_ui_documenso_signature_request
+from . import test_ui_documenso_signing_template
