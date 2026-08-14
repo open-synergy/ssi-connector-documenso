@@ -62,6 +62,30 @@
         </field>
     </record>
 
+    <!-- Backend search view. documenso.backend does not use
+         ssi_master_data_mixin (it inherits connector.backend), so this is a
+         standalone minimal search view rather than an inherit of
+         mixin_master_data_view_search, kept narrow to only what the
+         Archived filter needs (name search field + inactive filter). Without
+         this view, ir.ui.view._get_default_search_view() falls back to a
+         bare id/display_name search box with no filter at all, so the
+         Archived filter used by docs/documenso_backend/05-activate.md never
+         appears in the UI. -->
+    <record id="view_documenso_backend_search" model="ir.ui.view">
+        <field name="name">documenso.backend.search</field>
+        <field name="model">documenso.backend</field>
+        <field name="arch" type="xml">
+            <search string="Documenso Backends">
+                <field name="name" />
+                <filter
+                    name="inactive"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+            </search>
+        </field>
+    </record>
+
     <!-- Backend action -->
     <record id="action_documenso_backend" model="ir.actions.act_window">
         <field name="name">Documenso Backends</field>
