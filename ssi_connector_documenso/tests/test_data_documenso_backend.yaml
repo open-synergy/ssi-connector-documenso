@@ -1,0 +1,187 @@
+scenarios:
+  - name: "Create documenso.backend with API v2"
+    steps:
+      - step: "Create backend with version v2"
+        action: "create"
+        model: "documenso.backend"
+        save_as: "backend_v2"
+        values:
+          name: "TEST DOCUMENSO BACKEND Create V2"
+          base_url: "https://v2.example.com"
+          api_key: "TEST-API-KEY-V2"
+          version: "v2"
+      - step: "Assert created backend defaults"
+        action: "assert"
+        target: "backend_v2"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          active:
+            type: "value"
+            expected: true
+          version:
+            type: "value"
+            expected: "v2"
+
+  - name: "Create documenso.backend with API v1"
+    steps:
+      - step: "Create backend with version v1"
+        action: "create"
+        model: "documenso.backend"
+        save_as: "backend_v1"
+        values:
+          name: "TEST DOCUMENSO BACKEND Create V1"
+          base_url: "https://v1.example.com"
+          api_key: "TEST-API-KEY-V1"
+          version: "v1"
+      - step: "Assert version is v1"
+        action: "assert"
+        target: "backend_v1"
+        asserts:
+          version:
+            type: "value"
+            expected: "v1"
+
+  - name: "Write updates name and base_url"
+    steps:
+      - step: "Create backend to edit"
+        action: "create"
+        model: "documenso.backend"
+        save_as: "backend_edit"
+        values:
+          name: "TEST DOCUMENSO BACKEND Edit Before"
+          base_url: "https://before.example.com"
+          api_key: "TEST-API-KEY-EDIT"
+          version: "v2"
+      - step: "Update name and base_url"
+        action: "write"
+        target: "backend_edit"
+        values:
+          name: "TEST DOCUMENSO BACKEND Edit After"
+          base_url: "https://after.example.com"
+      - step: "Assert new values"
+        action: "assert"
+        target: "backend_edit"
+        asserts:
+          name:
+            type: "value"
+            expected: "TEST DOCUMENSO BACKEND Edit After"
+          base_url:
+            type: "value"
+            expected: "https://after.example.com"
+
+  - name: "Archive then activate follows the active field"
+    steps:
+      - step: "Create backend to archive"
+        action: "create"
+        model: "documenso.backend"
+        save_as: "backend_archive"
+        values:
+          name: "TEST DOCUMENSO BACKEND Archive"
+          base_url: "https://archive.example.com"
+          api_key: "TEST-API-KEY-ARCHIVE"
+          version: "v2"
+      - step: "Archive the backend"
+        action: "write"
+        target: "backend_archive"
+        values:
+          active: false
+      - step: "Assert archived"
+        action: "assert"
+        target: "backend_archive"
+        asserts:
+          active:
+            type: "value"
+            expected: false
+      - step: "Activate the backend again"
+        action: "write"
+        target: "backend_archive"
+        values:
+          active: true
+      - step: "Assert active again"
+        action: "assert"
+        target: "backend_archive"
+        asserts:
+          active:
+            type: "value"
+            expected: true
+
+  - name: "Unlink removes the backend"
+    steps:
+      - step: "Create backend to delete"
+        action: "create"
+        model: "documenso.backend"
+        save_as: "backend_delete"
+        values:
+          name: "TEST DOCUMENSO BACKEND Delete"
+          base_url: "https://delete.example.com"
+          api_key: "TEST-API-KEY-DELETE"
+          version: "v2"
+      - step: "Delete the backend"
+        action: "unlink"
+        target: "backend_delete"
+      - step: "Verify backend no longer found"
+        action: "search"
+        model: "documenso.backend"
+        domain: [["name", "=", "TEST DOCUMENSO BACKEND Delete"]]
+        save_as: "delete_result"
+        expect_count: 0
+
+  - name: "Copy clears api_key but keeps base_url"
+    steps:
+      - step: "Create backend to copy"
+        action: "create"
+        model: "documenso.backend"
+        save_as: "backend_source"
+        values:
+          name: "TEST DOCUMENSO BACKEND Copy Source"
+          base_url: "https://copy.example.com"
+          api_key: "TEST-API-KEY-COPY"
+          version: "v2"
+      - step: "Copy the backend"
+        action: "call"
+        target: "backend_source"
+        method: "copy"
+      - step: "Find the copied backend by its cleared api_key"
+        action: "search"
+        model: "documenso.backend"
+        domain:
+          - ["name", "=", "TEST DOCUMENSO BACKEND Copy Source"]
+          - ["api_key", "=", false]
+        save_as: "backend_copy"
+        expect_count: 1
+      - step: "Assert base_url carried over, api_key cleared"
+        action: "assert"
+        target: "backend_copy"
+        asserts:
+          base_url:
+            type: "value"
+            expected: "https://copy.example.com"
+          api_key:
+            type: "value"
+            operator: "is_falsy"
+
+  - name: "Create without base_url is rejected"
+    steps:
+      - step: "Create backend missing base_url must fail"
+        action: "create"
+        model: "documenso.backend"
+        expect_error:
+          type: "ValidationError"
+        values:
+          name: "TEST DOCUMENSO BACKEND No Base URL"
+          api_key: "TEST-API-KEY-NO-URL"
+          version: "v2"
+
+  - name: "Create without api_key is rejected"
+    steps:
+      - step: "Create backend missing api_key must fail"
+        action: "create"
+        model: "documenso.backend"
+        expect_error:
+          type: "ValidationError"
+        values:
+          name: "TEST DOCUMENSO BACKEND No API Key"
+          base_url: "https://noapikey.example.com"
+          version: "v2"
